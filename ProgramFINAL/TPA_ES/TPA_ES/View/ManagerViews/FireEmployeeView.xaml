@@ -1,0 +1,62 @@
+﻿<Window x:Class="TPA_ES.View.ManagerViews.FireEmployeeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TPA_ES.View.ManagerViews"
+        mc:Ignorable="d"
+        Title="FireEmployeeView" Height="597.157" Width="852.251">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto" MinWidth="140"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Button Name="btnBack" Content="Back" Margin="5,10,38.6,33" Padding="3"
+                    Background="LightSeaGreen" Click="btnBack_Click"/>
+        <TextBlock Text="FIRE Employee" Grid.Row="0"
+                   FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Padding="10" Margin="92,0,132.2,0" Width="215" Grid.ColumnSpan="3"/>
+
+        <TextBlock Text="Request ID" Grid.Row="1" Grid.Column="0" Margin="5,7.6,4.6,8.2" Padding="3"/>
+
+        <TextBox Name="txtID" Grid.Row="1" Grid.Column="1" Margin="5.4,7.6,4.6,8.2" Padding="3" 
+                 Text="{Binding Path=ID, Mode=TwoWay}"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+            <Button Name="btnReq" Content="Fire" Margin="5,8" Padding="3"
+                    Command="{Binding Path=FireEmployeeCommand}" FontSize="15" Background="IndianRed" Foreground="Wheat"/>
+            <Button Name="btnRefuse" Content="Refuse Request" Margin="5,8" Padding="3"
+                    Command="{Binding Path=RefuseRequestCommand}"/>
+        </StackPanel>
+        <TextBlock Name="errorMessage" Grid.Row="5" Grid.Column="1" 
+                   Text="{Binding Path=Message}" Foreground="Red"/>
+        <DataGrid Name="dgCustomer" AutoGenerateColumns="False" 
+                  Grid.Row="6" Grid.Column="1" Margin="0,8,309.2,0.6" Padding="3"
+                  ItemsSource="{Binding Path=FireEmployeeList, Mode=TwoWay}" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Request ID" Width="auto"
+                    Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn
+                    Header="Employee ID" Width="auto"
+                    Binding="{Binding Path=EmployeeID}"/>
+                <DataGridTextColumn
+                    Header="Reasons" Width="auto"
+                    Binding="{Binding Path=FireDescription}"/>
+                <DataGridTextColumn
+                    Header="Request Status" Width="auto"
+                    Binding="{Binding Path=RequestStatus}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

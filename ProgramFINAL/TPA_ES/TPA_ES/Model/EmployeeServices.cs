@@ -57,10 +57,10 @@ namespace TPA_ES.Model
             //if (objNewCustomer.Gender != "Female" && objNewEmployee.Gender != "Male")
             //    throw new ArgumentException("Gender must be between Female or Male");
 
-            if (objNewEmployee.Id == 0) throw new ArgumentException("Input Employee ID!");
-            if (objNewEmployee.EmployeeName == "") throw new ArgumentException("Input Employee Name!");
-            if (objNewEmployee.EmployeeStatus == "") throw new ArgumentException("Input Employee Status!");
-            if (positionID == "") throw new ArgumentException("Choose Employee Position!");
+            if (objNewEmployee.Id <= 0) throw new ArgumentException("Input Employee ID!");
+            if (objNewEmployee.EmployeeName == null) throw new ArgumentException("Input Employee Name!");
+            if (objNewEmployee.EmployeeStatus == null) throw new ArgumentException("Input Employee Status!");
+            if (positionID == null) throw new ArgumentException("Choose Employee Position!");
             if (positionID == "Teller") objNewEmployee.EmployeePositionID = 1;
             if (positionID == "Customer Service") objNewEmployee.EmployeePositionID = 2;
             if (positionID == "Manager") objNewEmployee.EmployeePositionID = 3;
@@ -107,9 +107,9 @@ namespace TPA_ES.Model
         public bool Update(EmployeeDTO objEmployeeUpdate, string positionID)
         {
             bool IsUpdated = false;
-            if (objEmployeeUpdate.Id == 0) throw new ArgumentException("Input Employee ID!");
-            if (objEmployeeUpdate.EmployeeName == "") throw new ArgumentException("Input Employee Name!");
-            if (objEmployeeUpdate.EmployeeStatus == "") throw new ArgumentException("Input Employee Status!");
+            if (objEmployeeUpdate.Id <= 0) throw new ArgumentException("Input Employee ID!");
+            if (objEmployeeUpdate.EmployeeName == null) throw new ArgumentException("Input Employee Name!");
+            if (objEmployeeUpdate.EmployeeStatus == null) throw new ArgumentException("Input Employee Status!");
             if (positionID == "Teller") objEmployeeUpdate.EmployeePositionID = 1;
             if (positionID == "Customer Service") objEmployeeUpdate.EmployeePositionID = 2;
             if (positionID == "Manager") objEmployeeUpdate.EmployeePositionID = 3;
@@ -143,7 +143,7 @@ namespace TPA_ES.Model
         {
 
             bool IsDeleted = false;
-            if (id == 0) throw new ArgumentException("Input Employee ID to Delete!");
+            if (id <= 0) throw new ArgumentException("Input Employee ID to Delete!");
             try
             {
                 EmployeePositionServices employeePositionServices = new EmployeePositionServices();
@@ -171,7 +171,7 @@ namespace TPA_ES.Model
         public EmployeeDTO Search(int id)
         {
             EmployeeDTO ObjEmployee = null;
-            if (id == 0) throw new ArgumentException("Input Employee ID to Search!");
+            if (id <= 0) throw new ArgumentException("Input Employee ID to Search!");
             try
             {
 
@@ -184,7 +184,7 @@ namespace TPA_ES.Model
                     //if (positionID == "Human Resource") objNewEmployee.EmployeePositionID = 4;
                     //if (positionID == "Security and Maintenance") objNewEmployee.EmployeePositionID = 5;
                     //if (positionID == "Finance") objNewEmployee.EmployeePositionID = 6;
-                    string PositionID = "";
+                   
                     
 
                     ObjEmployee = new EmployeeDTO()
@@ -194,6 +194,7 @@ namespace TPA_ES.Model
                         EmployeeStatus = ObjEmployeeToFind.EmployeeStatus,
                         EmployeePositionID = (int)ObjEmployeeToFind.EmployeePositionID,      
                     };
+                    string PositionID = "";
                     if (ObjEmployeeToFind.EmployeePositionID == 1) PositionID = "Teller";
                     if (ObjEmployeeToFind.EmployeePositionID == 2) PositionID = "Customer Service";
                     if (ObjEmployeeToFind.EmployeePositionID == 3) PositionID = "Manager";
@@ -216,10 +217,6 @@ namespace TPA_ES.Model
         #region getViolationData
         public List<EmployeeDTO> GetViolationData()
         {
-            //if (objNewEmployee.Gender != "Female" && objNewEmployee.Gender != "Male")
-            //    throw new ArgumentException("Gender must be between Female or Male");
-
-            //Hanya Current employee saja yg bakal muncul
             List<EmployeeDTO> ObjEmployeeViolationData = new List<EmployeeDTO>();
             try
             {
@@ -248,7 +245,7 @@ namespace TPA_ES.Model
         public bool UpdateViolationScore(EmployeeDTO objEmployeeUpdate)
         {
             bool IsUpdated = false;
-            if(objEmployeeUpdate.Id == 0)
+            if(objEmployeeUpdate.Id <= 0)
                 throw new ArgumentException("Employee ID must be filled!");
             if (objEmployeeUpdate.EmployeeName == "") throw new ArgumentException("Insert Employee Name");
             if (objEmployeeUpdate.EmployeeViolationScore <= 0)
@@ -276,7 +273,7 @@ namespace TPA_ES.Model
         public EmployeeDTO SearchEmployeeViolation(int id)
         {
             EmployeeDTO ObjEmployeeViolation = null;
-            if (id == 0) throw new ArgumentException("Insert Employee ID!");
+            if (id <= 0) throw new ArgumentException("Insert Employee ID!");
             try
             {
                 var ObjEmployeeToFind = ObjContext.Employees.Find(id);
@@ -317,9 +314,10 @@ namespace TPA_ES.Model
         public bool RequestFire(int employeeID, string reasons)
         {
             bool IsAdded = false;
-          
-            if (employeeID == 0) throw new ArgumentException("Input Employee ID!");
-            if (reasons == "") throw new ArgumentException("Input Reasons!");
+
+            
+            if (employeeID <= 0) throw new ArgumentException("Input Employee ID!");
+            if (reasons == null) throw new ArgumentException("Input Reasons!");
 
             var ObjEmployee = ObjContext.Employees.Find(employeeID);
             if (ObjEmployee == null) throw new ArgumentException("Employee Not Found!");
@@ -332,6 +330,7 @@ namespace TPA_ES.Model
                 ObjRequestFire.EmployeeID = employeeID;
                 ObjRequestFire.FireDescription = reasons;
                 ObjRequestFire.SalaryRequest = 0;
+                ObjRequestFire.RequestStatus = "Pending";
 
                 ObjContext.Requests.Add(ObjRequestFire);
                 
@@ -349,7 +348,7 @@ namespace TPA_ES.Model
 
         #endregion
 
-        #region Request to Fire Employee
+        #region Request SALARY Employee
         public bool RequestSalary(int employeeID, int salaryRequest)
         {
             bool IsAdded = false;
@@ -360,17 +359,19 @@ namespace TPA_ES.Model
             var ObjEmployee = ObjContext.Employees.Find(employeeID);
             if (ObjEmployee == null) throw new ArgumentException("Employee Not Found!");
             if (ObjEmployee.EmployeeStatus == "Candidate") throw new ArgumentException("Employee Must be a Current Employee!");
+            if (ObjEmployee.EmployeeStatus == "Fired") throw new ArgumentException("Employee Already Fired");
             if (ObjEmployee.EmployeePositionID == 0) throw new ArgumentException("Employee Must be a Current Employee!");
 
             try
             {
-                var ObjRequestFire = new Request();
-                ObjRequestFire.RequestTypeID = 2;
-                ObjRequestFire.EmployeeID = employeeID;
-                ObjRequestFire.FireDescription = "";
-                ObjRequestFire.SalaryRequest = salaryRequest;
+                var ObjRequestSalary = new Request();
+                ObjRequestSalary.RequestTypeID = 2;
+                ObjRequestSalary.EmployeeID = employeeID;
+                ObjRequestSalary.FireDescription = "";
+                ObjRequestSalary.SalaryRequest = salaryRequest;
+                ObjRequestSalary.RequestStatus = "Pending";
 
-                ObjContext.Requests.Add(ObjRequestFire);
+                ObjContext.Requests.Add(ObjRequestSalary);
 
                 var NoOfRowAffeccted = ObjContext.SaveChanges();
                 IsAdded = NoOfRowAffeccted > 0;
@@ -391,12 +392,18 @@ namespace TPA_ES.Model
         {
             bool IsAdded = false;
 
-            if (requestID == 0) throw new ArgumentException("Input Request ID!");          
+            if (requestID <= 0) throw new ArgumentException("Input Request ID!");          
 
             var ObjRequest = ObjContext.Requests.Find(requestID);
+            if (ObjRequest.RequestTypeID != 2) throw new ArgumentException("Request must be Salary Request!");
             if (ObjRequest == null) throw new ArgumentException("Request Not Found!");
+
+            if (ObjRequest.RequestStatus == "Accepted") throw new ArgumentException("Request already Accepted, Choose request that still Pending");
+            if (ObjRequest.RequestStatus == "Not Accepted") throw new ArgumentException("Request already Not Accepted! Choose request that still Pending");
             try
             {
+                ObjRequest.RequestStatus = "Accepted";
+
                 var ObjEmployee = ObjContext.Employees.Find(ObjRequest.EmployeeID);
                 ObjEmployee.EmployeeSalay = ObjRequest.SalaryRequest;
 
@@ -420,13 +427,18 @@ namespace TPA_ES.Model
         {
 
             bool IsDeleted = false;
-            if (requestID == 0) throw new ArgumentException("Input Request ID to Delete!");
+            if (requestID <= 0) throw new ArgumentException("Input Request ID to Deny!");
+            
             try
             {
-                var ObjRequestToDelete = ObjContext.Requests.Find(requestID);
-                if (ObjRequestToDelete != null)
+                var ObjRequestToRefuse = ObjContext.Requests.Find(requestID);
+                if (ObjRequestToRefuse.RequestStatus == "Accepted") throw new ArgumentException("Request already Accepted");
+                if (ObjRequestToRefuse.RequestStatus == "Not Accepted") throw new ArgumentException("Request already Not Accepted!");
+                if (ObjRequestToRefuse == null) throw new ArgumentException("Request Not Found!");
+
+                if (ObjRequestToRefuse != null)
                 {
-                    ObjContext.Requests.Remove(ObjRequestToDelete);
+                    ObjRequestToRefuse.RequestStatus = "Not Accepted";
                 }
                 else
                 {
@@ -447,31 +459,102 @@ namespace TPA_ES.Model
         //NANTI INI JADI CONTOH UTK YG LAIN KALO MAU ADA DELETE
         public bool FireRequest(int requestID)
         {
-
-            bool IsDeleted = false;
-            if (requestID == 0) throw new ArgumentException("Input Employee ID to Fire!");
+            bool IsFired = false;
+            if (requestID <= 0) throw new ArgumentException("Input Employee ID to Fire!");
             try
             {
                 var ObjReq = ObjContext.Requests.Find(requestID);
+                if (ObjReq == null) throw new ArgumentException("Request Not Found!");
+                if (ObjReq.RequestTypeID != 1) throw new ArgumentException("RequestType Must be Fire!");
+
+                if (ObjReq.RequestStatus == "Accepted") throw new ArgumentException("Request already Accepted, Choose request that still Pending");
+                if (ObjReq.RequestStatus == "Not Accepted") throw new ArgumentException("Request already Not Accepted! Choose request that still Pending");
+
                 var ObjEmployeeToFire = ObjContext.Employees.Find(ObjReq.EmployeeID);
+
                 if (ObjReq != null)
                 {
-                    ObjContext.Employees.Remove(ObjEmployeeToFire);
+                    ObjReq.RequestStatus = "Accepted";
+
+                    ObjEmployeeToFire.EmployeeStatus = "Fired";
+                    var NoOfRowAffeccted = ObjContext.SaveChanges();
+                    IsFired = NoOfRowAffeccted > 0;
                 }
                 else
                 {
                     throw new ArgumentException("Request Not Found!");
                 }
                 var NoOfRowAffected = ObjContext.SaveChanges();
-                IsDeleted = NoOfRowAffected > 0;
+                IsFired = NoOfRowAffected > 0;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return IsDeleted;
+            return IsFired;
         }
         #endregion
 
+
+        #region Get FIRE Request Data
+        public List<RequestDTO> GetRequestFireData()
+        {
+            
+            List<RequestDTO> ObjRequestData = new List<RequestDTO>();
+            try
+            {
+                var ObjQuery = from request in ObjContext.Requests
+                               where request.RequestTypeID == 1
+                               select request;
+                foreach (var request in ObjQuery)
+                {
+                    ObjRequestData.Add(new RequestDTO
+                    {
+                        Id = request.Id,
+                        EmployeeID = (int)request.EmployeeID,
+                        FireDescription = request.FireDescription,
+                        RequestStatus = request.RequestStatus
+                        
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ObjRequestData;
+        }
+
+        #endregion
+
+        #region Get SALARY Request Data
+        public List<RequestDTO> GetRequestSalaryData()
+        {
+
+            List<RequestDTO> ObjRequestData = new List<RequestDTO>();
+            try
+            {
+                var ObjQuery = from request in ObjContext.Requests
+                               where request.RequestTypeID == 2
+                               select request;
+                foreach (var request in ObjQuery)
+                {
+                    ObjRequestData.Add(new RequestDTO
+                    {
+                        Id = request.Id,
+                        EmployeeID = (int)request.EmployeeID,
+                        SalaryRequest = (int)request.SalaryRequest,
+                        RequestStatus = request.RequestStatus
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ObjRequestData;
+        }
+
+        #endregion
     }
 }

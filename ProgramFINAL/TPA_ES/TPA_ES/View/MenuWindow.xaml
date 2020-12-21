@@ -33,15 +33,15 @@
             <Button Name="btnCustomer" Content="Customer" Margin="5,8" Padding="3"  FontSize="20" 
                     />
             <Button Name="btnTeller" Content="Teller" Margin="5,8" Padding="3"  FontSize="20" 
-                    Click="btnTeller_Click" Background="Bisque"/>
+                    Click="btnTeller_Click" Background="Plum"/>
             <Button Name="btnCustomerService" Content="Customer Service" Margin="5,8" Padding="3" FontSize="20" 
                     Click="btnCustomerService_Click"/>
             <Button Name="btnSMT" Content="Security and Maintanace Team" Margin="5,8" Padding="3" FontSize="20" 
                     />
             <Button Name="btnHRM" Content="Human Resource Management" Margin="5,8" Padding="3" FontSize="20" 
-                   Click="btnHRM_Click" Background="Bisque"/>
+                   Click="btnHRM_Click" Background="Plum"/>
             <Button Name="btnFinance" Content="Finance Team" Margin="5,8" Padding="3" FontSize="20" 
-                   />
+                   Click="btnFinance_Click" Background="Plum"/>
             <Button Name="btnManager" Content="Manager" Margin="5,8" Padding="3" FontSize="20" 
                    Click="btnManager_Click" Background="Plum"/>
             <Button Name="btnATM" Content="ATM" Margin="5,8" Padding="3" FontSize="20" 

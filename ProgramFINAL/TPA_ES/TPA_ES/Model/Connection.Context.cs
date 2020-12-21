@@ -33,11 +33,11 @@ namespace TPA_ES.Model
         public virtual DbSet<EmployeePosition> EmployeePositions { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<ReportItem> ReportItems { get; set; }
-        public virtual DbSet<Sibling> Siblings { get; set; }
-        public virtual DbSet<Transaction> Transactions { get; set; }
-        public virtual DbSet<TransactionType> TransactionTypes { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
         public virtual DbSet<RequestType> RequestTypes { get; set; }
         public virtual DbSet<ScheduleSM> ScheduleSMs { get; set; }
+        public virtual DbSet<Sibling> Siblings { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<TransactionType> TransactionTypes { get; set; }
     }
 }

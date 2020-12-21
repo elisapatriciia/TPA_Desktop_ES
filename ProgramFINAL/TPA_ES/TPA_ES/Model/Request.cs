@@ -16,9 +16,10 @@ namespace TPA_ES.Model
     {
         public int Id { get; set; }
         public int RequestTypeID { get; set; }
-        public int EmployeeID { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
         public string FireDescription { get; set; }
         public Nullable<int> SalaryRequest { get; set; }
+        public string RequestStatus { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual RequestType RequestType { get; set; }

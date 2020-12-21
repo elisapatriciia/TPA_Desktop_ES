@@ -80,9 +80,10 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RequestTypeID" Type="int" Nullable="false" />
-    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" />
     <Property Name="FireDescription" Type="varchar" MaxLength="100" />
     <Property Name="SalaryRequest" Type="int" />
+    <Property Name="RequestStatus" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="RequestType">
     <Key>
@@ -202,8 +203,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Request__Employe__65370702">
-    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+  <Association Name="FK__Request__Employe__6CD828CA">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
     <End Role="Request" Type="Self.Request" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Employee">
@@ -214,7 +215,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Request__Request__6442E2C9">
+  <Association Name="FK__Request__Request__6BE40491">
     <End Role="RequestType" Type="Self.RequestType" Multiplicity="1" />
     <End Role="Request" Type="Self.Request" Multiplicity="*" />
     <ReferentialConstraint>
@@ -325,11 +326,11 @@
       <End Role="Item" EntitySet="Item" />
       <End Role="ReportItem" EntitySet="ReportItem" />
     </AssociationSet>
-    <AssociationSet Name="FK__Request__Employe__65370702" Association="Self.FK__Request__Employe__65370702">
+    <AssociationSet Name="FK__Request__Employe__6CD828CA" Association="Self.FK__Request__Employe__6CD828CA">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Request" EntitySet="Request" />
     </AssociationSet>
-    <AssociationSet Name="FK__Request__Request__6442E2C9" Association="Self.FK__Request__Request__6442E2C9">
+    <AssociationSet Name="FK__Request__Request__6BE40491" Association="Self.FK__Request__Request__6BE40491">
       <End Role="RequestType" EntitySet="RequestType" />
       <End Role="Request" EntitySet="Request" />
     </AssociationSet>

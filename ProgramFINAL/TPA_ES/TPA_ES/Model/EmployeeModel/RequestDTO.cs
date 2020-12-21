@@ -57,5 +57,13 @@ namespace TPA_ES.Model.EmployeeModel
             set { salaryRequest = value; OnPropertyChanged("SalaryRequest"); }
         }
 
+        private string requestStatus;
+
+        public string RequestStatus
+        {
+            get { return requestStatus; }
+            set { requestStatus = value; OnPropertyChanged("RequestStatus"); }
+        }
+
     }
 }

@@ -85,9 +85,10 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RequestTypeID" Type="int" Nullable="false" />
-          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
           <Property Name="FireDescription" Type="varchar" MaxLength="100" />
           <Property Name="SalaryRequest" Type="int" />
+          <Property Name="RequestStatus" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="RequestType">
           <Key>
@@ -207,8 +208,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Request__Employe__65370702">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+        <Association Name="FK__Request__Employe__6CD828CA">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -219,7 +220,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Request__Request__6442E2C9">
+        <Association Name="FK__Request__Request__6BE40491">
           <End Role="RequestType" Type="Self.RequestType" Multiplicity="1" />
           <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
@@ -330,11 +331,11 @@
             <End Role="Item" EntitySet="Item" />
             <End Role="ReportItem" EntitySet="ReportItem" />
           </AssociationSet>
-          <AssociationSet Name="FK__Request__Employe__65370702" Association="Self.FK__Request__Employe__65370702">
+          <AssociationSet Name="FK__Request__Employe__6CD828CA" Association="Self.FK__Request__Employe__6CD828CA">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
-          <AssociationSet Name="FK__Request__Request__6442E2C9" Association="Self.FK__Request__Request__6442E2C9">
+          <AssociationSet Name="FK__Request__Request__6BE40491" Association="Self.FK__Request__Request__6BE40491">
             <End Role="RequestType" EntitySet="RequestType" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
@@ -372,6 +373,9 @@
           <EntitySet Name="EmployeePositions" EntityType="KongBuModel.EmployeePosition" />
           <EntitySet Name="Items" EntityType="KongBuModel.Item" />
           <EntitySet Name="ReportItems" EntityType="KongBuModel.ReportItem" />
+          <EntitySet Name="Requests" EntityType="KongBuModel.Request" />
+          <EntitySet Name="RequestTypes" EntityType="KongBuModel.RequestType" />
+          <EntitySet Name="ScheduleSMs" EntityType="KongBuModel.ScheduleSM" />
           <EntitySet Name="Siblings" EntityType="KongBuModel.Sibling" />
           <EntitySet Name="Transactions" EntityType="KongBuModel.Transaction" />
           <EntitySet Name="TransactionTypes" EntityType="KongBuModel.TransactionType" />
@@ -403,22 +407,11 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="EmployeeLeavingPermit" EntitySet="EmployeeLeavingPermits" />
           </AssociationSet>
-          <AssociationSet Name="FK__ReportIte__Emplo__3B40CD36" Association="KongBuModel.FK__ReportIte__Emplo__3B40CD36">
+          <AssociationSet Name="FK__ReportIte__Emplo__4F47C5E3" Association="KongBuModel.FK__ReportIte__Emplo__4F47C5E3">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="ReportItem" EntitySet="ReportItems" />
           </AssociationSet>
-          <AssociationSet Name="FK__ReportIte__ItemC__3C34F16F" Association="KongBuModel.FK__ReportIte__ItemC__3C34F16F">
-            <End Role="Item" EntitySet="Items" />
-            <End Role="ReportItem" EntitySet="ReportItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Trans__0E6E26BF" Association="KongBuModel.FK__Transacti__Trans__0E6E26BF">
-            <End Role="TransactionType" EntitySet="TransactionTypes" />
-            <End Role="Transaction" EntitySet="Transactions" />
-          </AssociationSet>
-          <EntitySet Name="Requests" EntityType="KongBuModel.Request" />
-          <EntitySet Name="RequestTypes" EntityType="KongBuModel.RequestType" />
-          <EntitySet Name="ScheduleSMs" EntityType="KongBuModel.ScheduleSM" />
-          <AssociationSet Name="FK__Request__Employe__65370702" Association="KongBuModel.FK__Request__Employe__65370702">
+          <AssociationSet Name="FK__Request__Employe__6CD828CA" Association="KongBuModel.FK__Request__Employe__6CD828CA">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Request" EntitySet="Requests" />
           </AssociationSet>
@@ -426,9 +419,17 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="ScheduleSM" EntitySet="ScheduleSMs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Request__Request__6442E2C9" Association="KongBuModel.FK__Request__Request__6442E2C9">
+          <AssociationSet Name="FK__ReportIte__ItemC__503BEA1C" Association="KongBuModel.FK__ReportIte__ItemC__503BEA1C">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="ReportItem" EntitySet="ReportItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__Request__6BE40491" Association="KongBuModel.FK__Request__Request__6BE40491">
             <End Role="RequestType" EntitySet="RequestTypes" />
             <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Trans__0E6E26BF" Association="KongBuModel.FK__Transacti__Trans__0E6E26BF">
+            <End Role="TransactionType" EntitySet="TransactionTypes" />
+            <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Account">
@@ -475,8 +476,8 @@
           <Property Name="EmployeeSalay" Type="Int32" />
           <NavigationProperty Name="EmployeePosition" Relationship="KongBuModel.FK__Employee__Employ__1CBC4616" FromRole="Employee" ToRole="EmployeePosition" />
           <NavigationProperty Name="EmployeeLeavingPermits" Relationship="KongBuModel.FK__EmployeeL__Emplo__1BC821DD" FromRole="Employee" ToRole="EmployeeLeavingPermit" />
-          <NavigationProperty Name="ReportItems" Relationship="KongBuModel.FK__ReportIte__Emplo__3B40CD36" FromRole="Employee" ToRole="ReportItem" />
-          <NavigationProperty Name="Requests" Relationship="KongBuModel.FK__Request__Employe__65370702" FromRole="Employee" ToRole="Request" />
+          <NavigationProperty Name="ReportItems" Relationship="KongBuModel.FK__ReportIte__Emplo__4F47C5E3" FromRole="Employee" ToRole="ReportItem" />
+          <NavigationProperty Name="Requests" Relationship="KongBuModel.FK__Request__Employe__6CD828CA" FromRole="Employee" ToRole="Request" />
           <NavigationProperty Name="ScheduleSMs" Relationship="KongBuModel.FK__ScheduleS__Emplo__40058253" FromRole="Employee" ToRole="ScheduleSM" />
         </EntityType>
         <EntityType Name="EmployeeLeavingPermit">
@@ -505,7 +506,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ReportItems" Relationship="KongBuModel.FK__ReportIte__ItemC__3C34F16F" FromRole="Item" ToRole="ReportItem" />
+          <NavigationProperty Name="ReportItems" Relationship="KongBuModel.FK__ReportIte__ItemC__503BEA1C" FromRole="Item" ToRole="ReportItem" />
         </EntityType>
         <EntityType Name="ReportItem">
           <Key>
@@ -517,10 +518,43 @@
           <Property Name="ItemCode" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ReportDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Employee" Relationship="KongBuModel.FK__ReportIte__Emplo__3B40CD36" FromRole="ReportItem" ToRole="Employee" />
-          <NavigationProperty Name="Item" Relationship="KongBuModel.FK__ReportIte__ItemC__3C34F16F" FromRole="ReportItem" ToRole="Item" />
-          <Property Name="ReportStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RepairDate" Type="DateTime" Precision="0" />
+          <Property Name="ReportStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="KongBuModel.FK__ReportIte__Emplo__4F47C5E3" FromRole="ReportItem" ToRole="Employee" />
+          <NavigationProperty Name="Item" Relationship="KongBuModel.FK__ReportIte__ItemC__503BEA1C" FromRole="ReportItem" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestTypeID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="FireDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SalaryRequest" Type="Int32" />
+          <Property Name="RequestStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="KongBuModel.FK__Request__Employe__6CD828CA" FromRole="Request" ToRole="Employee" />
+          <NavigationProperty Name="RequestType" Relationship="KongBuModel.FK__Request__Request__6BE40491" FromRole="Request" ToRole="RequestType" />
+        </EntityType>
+        <EntityType Name="RequestType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RequestTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RequestDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Requests" Relationship="KongBuModel.FK__Request__Request__6BE40491" FromRole="RequestType" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="ScheduleSM">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="DateToRepair" Type="DateTime" Precision="0" />
+          <Property Name="ItemStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="KongBuModel.FK__ScheduleS__Emplo__40058253" FromRole="ScheduleSM" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Sibling">
           <Key>
@@ -639,7 +673,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ReportIte__Emplo__3B40CD36">
+        <Association Name="FK__ReportIte__Emplo__4F47C5E3">
           <End Type="KongBuModel.Employee" Role="Employee" Multiplicity="0..1" />
           <End Type="KongBuModel.ReportItem" Role="ReportItem" Multiplicity="*" />
           <ReferentialConstraint>
@@ -651,64 +685,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ReportIte__ItemC__3C34F16F">
-          <End Type="KongBuModel.Item" Role="Item" Multiplicity="0..1" />
-          <End Type="KongBuModel.ReportItem" Role="ReportItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Item">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ReportItem">
-              <PropertyRef Name="ItemCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Transacti__Trans__0E6E26BF">
-          <End Type="KongBuModel.TransactionType" Role="TransactionType" Multiplicity="1" />
-          <End Type="KongBuModel.Transaction" Role="Transaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TransactionType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Transaction">
-              <PropertyRef Name="TransactionTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Request">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RequestTypeID" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="FireDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="SalaryRequest" Type="Int32" />
-          <NavigationProperty Name="Employee" Relationship="KongBuModel.FK__Request__Employe__65370702" FromRole="Request" ToRole="Employee" />
-          <NavigationProperty Name="RequestType" Relationship="KongBuModel.FK__Request__Request__6442E2C9" FromRole="Request" ToRole="RequestType" />
-        </EntityType>
-        <EntityType Name="RequestType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="RequestTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RequestDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Requests" Relationship="KongBuModel.FK__Request__Request__6442E2C9" FromRole="RequestType" ToRole="Request" />
-        </EntityType>
-        <EntityType Name="ScheduleSM">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ReportID" Type="Int32" />
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="DateToRepair" Type="DateTime" Precision="0" />
-          <Property Name="ItemStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Employee" Relationship="KongBuModel.FK__ScheduleS__Emplo__40058253" FromRole="ScheduleSM" ToRole="Employee" />
-        </EntityType>
-        <Association Name="FK__Request__Employe__65370702">
-          <End Type="KongBuModel.Employee" Role="Employee" Multiplicity="1" />
+        <Association Name="FK__Request__Employe__6CD828CA">
+          <End Type="KongBuModel.Employee" Role="Employee" Multiplicity="0..1" />
           <End Type="KongBuModel.Request" Role="Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -731,7 +709,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Request__Request__6442E2C9">
+        <Association Name="FK__ReportIte__ItemC__503BEA1C">
+          <End Type="KongBuModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="KongBuModel.ReportItem" Role="ReportItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReportItem">
+              <PropertyRef Name="ItemCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__Request__6BE40491">
           <End Type="KongBuModel.RequestType" Role="RequestType" Multiplicity="1" />
           <End Type="KongBuModel.Request" Role="Request" Multiplicity="*" />
           <ReferentialConstraint>
@@ -740,6 +730,18 @@
             </Principal>
             <Dependent Role="Request">
               <PropertyRef Name="RequestTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Trans__0E6E26BF">
+          <End Type="KongBuModel.TransactionType" Role="TransactionType" Multiplicity="1" />
+          <End Type="KongBuModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="TransactionTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -820,13 +822,45 @@
           <EntitySetMapping Name="ReportItems">
             <EntityTypeMapping TypeName="KongBuModel.ReportItem">
               <MappingFragment StoreEntitySet="ReportItem">
-                <ScalarProperty Name="RepairDate" ColumnName="RepairDate" />
                 <ScalarProperty Name="ReportStatus" ColumnName="ReportStatus" />
+                <ScalarProperty Name="RepairDate" ColumnName="RepairDate" />
                 <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
                 <ScalarProperty Name="EmployeePositionID" ColumnName="EmployeePositionID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="KongBuModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+                <ScalarProperty Name="SalaryRequest" ColumnName="SalaryRequest" />
+                <ScalarProperty Name="FireDescription" ColumnName="FireDescription" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestTypes">
+            <EntityTypeMapping TypeName="KongBuModel.RequestType">
+              <MappingFragment StoreEntitySet="RequestType">
+                <ScalarProperty Name="RequestDescription" ColumnName="RequestDescription" />
+                <ScalarProperty Name="RequestTypeName" ColumnName="RequestTypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScheduleSMs">
+            <EntityTypeMapping TypeName="KongBuModel.ScheduleSM">
+              <MappingFragment StoreEntitySet="ScheduleSM">
+                <ScalarProperty Name="ItemStatus" ColumnName="ItemStatus" />
+                <ScalarProperty Name="DateToRepair" ColumnName="DateToRepair" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -858,37 +892,6 @@
               <MappingFragment StoreEntitySet="TransactionType">
                 <ScalarProperty Name="TransactionDescription" ColumnName="TransactionDescription" />
                 <ScalarProperty Name="TransactionTypeName" ColumnName="TransactionTypeName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Requests">
-            <EntityTypeMapping TypeName="KongBuModel.Request">
-              <MappingFragment StoreEntitySet="Request">
-                <ScalarProperty Name="SalaryRequest" ColumnName="SalaryRequest" />
-                <ScalarProperty Name="FireDescription" ColumnName="FireDescription" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RequestTypes">
-            <EntityTypeMapping TypeName="KongBuModel.RequestType">
-              <MappingFragment StoreEntitySet="RequestType">
-                <ScalarProperty Name="RequestDescription" ColumnName="RequestDescription" />
-                <ScalarProperty Name="RequestTypeName" ColumnName="RequestTypeName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ScheduleSMs">
-            <EntityTypeMapping TypeName="KongBuModel.ScheduleSM">
-              <MappingFragment StoreEntitySet="ScheduleSM">
-                <ScalarProperty Name="ItemStatus" ColumnName="ItemStatus" />
-                <ScalarProperty Name="DateToRepair" ColumnName="DateToRepair" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -20,8 +20,8 @@ namespace TPA_ES.Model
         public Nullable<int> ItemCode { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> ReportDate { get; set; }
-        public string ReportStatus { get; set; }
         public Nullable<System.DateTime> RepairDate { get; set; }
+        public string ReportStatus { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual Item Item { get; set; }

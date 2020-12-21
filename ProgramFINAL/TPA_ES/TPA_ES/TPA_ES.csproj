@@ -182,6 +182,12 @@
     <Compile Include="View\EmployeePositionView.xaml.cs">
       <DependentUpon>EmployeePositionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\FinanceViews\FinanceTeamView.xaml.cs">
+      <DependentUpon>FinanceTeamView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FinanceViews\SetEmployeeSalaryView.xaml.cs">
+      <DependentUpon>SetEmployeeSalaryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\HRView\RequestFiringEmployee.xaml.cs">
       <DependentUpon>RequestFiringEmployee.xaml</DependentUpon>
     </Compile>
@@ -196,6 +202,12 @@
     </Compile>
     <Compile Include="View\ManagerView.xaml.cs">
       <DependentUpon>ManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerViews\CheckRequestFiringView.xaml.cs">
+      <DependentUpon>CheckRequestFiringView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerViews\FireEmployeeView.xaml.cs">
+      <DependentUpon>FireEmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
@@ -286,6 +298,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\FinanceViews\FinanceTeamView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FinanceViews\SetEmployeeSalaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\HRView\RequestFiringEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -303,6 +323,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerViews\CheckRequestFiringView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerViews\FireEmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

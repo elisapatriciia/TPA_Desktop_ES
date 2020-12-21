@@ -46,6 +46,14 @@ namespace TPA_ES.ViewModel
             updateViolationCommand = new RelayCommand(UpdateViolationScore);
 
             requestFireEmployeeCommand = new RelayCommand(RequestFire);
+            requestSalaryEmployeeCommand = new RelayCommand(RequestSalary);
+            setSalaryEmployeeCommand = new RelayCommand(SetSalary);
+            fireEmployeeCommand = new RelayCommand(FireEmployee);
+            refuseRequestCommand = new RelayCommand(RefuseRequest);
+
+
+            LoadDataforFIRE();
+            LoadDataforSALARY();
         }
        
 
@@ -365,6 +373,153 @@ namespace TPA_ES.ViewModel
             {
                 Message = ex.Message;
             }
+        }
+        #endregion
+
+        #region Request Pecat Employee
+        private RelayCommand requestSalaryEmployeeCommand;
+        public RelayCommand RequestSalaryEmployeeCommand
+        {
+            get { return requestSalaryEmployeeCommand; }
+        }
+
+        public void RequestSalary()
+        {
+            try
+            {
+                var IsUpdated = ObjEmployeeServices.RequestSalary(id, salaryRequest);
+                if (IsUpdated)
+                {
+                    Message = "Request Salary Save";
+                    LoadDataforViolation();
+                }
+                else
+                {
+                    Message = "Request Salary Failed";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+        }
+        #endregion
+
+        //blm ditambahin kemana2
+        #region Terima Request Salary
+        private RelayCommand setSalaryEmployeeCommand;
+        public RelayCommand SetSalaryEmployeeCommand
+        {
+            get { return setSalaryEmployeeCommand; }
+        }
+
+        public void SetSalary()
+        {
+            try
+            {
+                var IsUpdated = ObjEmployeeServices.UpdateSalary(id);
+                if (IsUpdated)
+                {
+                    Message = "Salary Updated!";
+                    LoadDataforViolation();
+                }
+                else
+                {
+                    Message = "Update Salary Failled";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+        }
+        #endregion
+
+        #region Tolak Request apapun!
+        private RelayCommand refuseRequestCommand;
+        public RelayCommand RefuseRequestCommand
+        {
+            get { return refuseRequestCommand; }
+        }
+
+        public void RefuseRequest()
+        {
+            try
+            {
+                var IsUpdated = ObjEmployeeServices.DeleteRequest(id);
+                if (IsUpdated)
+                {
+                    Message = "Request Dennied!";
+                    LoadDataforViolation();
+                }
+                else
+                {
+                    Message = "Request Dennied Failled";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+        }
+        #endregion
+
+        #region Terima Pecat Employee!
+        private RelayCommand fireEmployeeCommand;
+        public RelayCommand FireEmployeeCommand
+        {
+            get { return fireEmployeeCommand; }
+        }
+
+        public void FireEmployee()
+        {
+            try
+            {
+                var IsUpdated = ObjEmployeeServices.FireRequest(id);
+                if (IsUpdated)
+                {
+                    Message = "Employee Fired!";
+                    LoadDataforViolation();
+                }
+                else
+                {
+                    Message = "Employee Fire Failled";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+        }
+        #endregion
+
+        #region Tampilin Data PECAT!
+        private ObservableCollection<RequestDTO> fireEmployeeList;
+        public ObservableCollection<RequestDTO> FireEmployeeList
+        {
+            get { return fireEmployeeList; }
+            set { fireEmployeeList = value; OnPropertyChanged("FireEmployeeList"); }
+        }
+        private void LoadDataforFIRE()
+        {
+            FireEmployeeList = new ObservableCollection<RequestDTO>(ObjEmployeeServices.GetRequestFireData());
+        }
+        #endregion
+
+        #region Tampilin Data SALARY!
+        private ObservableCollection<RequestDTO> salaryEmployeeList;
+        public ObservableCollection<RequestDTO> SalaryEmployeeList
+        {
+            get { return salaryEmployeeList; }
+            set { salaryEmployeeList = value; OnPropertyChanged("SalaryEmployeeList"); }
+        }
+        private void LoadDataforSALARY()
+        {
+            SalaryEmployeeList = new ObservableCollection<RequestDTO>(ObjEmployeeServices.GetRequestSalaryData());
         }
         #endregion
     }

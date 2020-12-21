@@ -72,13 +72,45 @@
     <EntitySetMapping Name="ReportItems">
       <EntityTypeMapping TypeName="KongBuModel.ReportItem">
         <MappingFragment StoreEntitySet="ReportItem">
-          <ScalarProperty Name="RepairDate" ColumnName="RepairDate" />
           <ScalarProperty Name="ReportStatus" ColumnName="ReportStatus" />
+          <ScalarProperty Name="RepairDate" ColumnName="RepairDate" />
           <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
           <ScalarProperty Name="EmployeePositionID" ColumnName="EmployeePositionID" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Requests">
+      <EntityTypeMapping TypeName="KongBuModel.Request">
+        <MappingFragment StoreEntitySet="Request">
+          <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+          <ScalarProperty Name="SalaryRequest" ColumnName="SalaryRequest" />
+          <ScalarProperty Name="FireDescription" ColumnName="FireDescription" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RequestTypes">
+      <EntityTypeMapping TypeName="KongBuModel.RequestType">
+        <MappingFragment StoreEntitySet="RequestType">
+          <ScalarProperty Name="RequestDescription" ColumnName="RequestDescription" />
+          <ScalarProperty Name="RequestTypeName" ColumnName="RequestTypeName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScheduleSMs">
+      <EntityTypeMapping TypeName="KongBuModel.ScheduleSM">
+        <MappingFragment StoreEntitySet="ScheduleSM">
+          <ScalarProperty Name="ItemStatus" ColumnName="ItemStatus" />
+          <ScalarProperty Name="DateToRepair" ColumnName="DateToRepair" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -110,37 +142,6 @@
         <MappingFragment StoreEntitySet="TransactionType">
           <ScalarProperty Name="TransactionDescription" ColumnName="TransactionDescription" />
           <ScalarProperty Name="TransactionTypeName" ColumnName="TransactionTypeName" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Requests">
-      <EntityTypeMapping TypeName="KongBuModel.Request">
-        <MappingFragment StoreEntitySet="Request">
-          <ScalarProperty Name="SalaryRequest" ColumnName="SalaryRequest" />
-          <ScalarProperty Name="FireDescription" ColumnName="FireDescription" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RequestTypes">
-      <EntityTypeMapping TypeName="KongBuModel.RequestType">
-        <MappingFragment StoreEntitySet="RequestType">
-          <ScalarProperty Name="RequestDescription" ColumnName="RequestDescription" />
-          <ScalarProperty Name="RequestTypeName" ColumnName="RequestTypeName" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ScheduleSMs">
-      <EntityTypeMapping TypeName="KongBuModel.ScheduleSM">
-        <MappingFragment StoreEntitySet="ScheduleSM">
-          <ScalarProperty Name="ItemStatus" ColumnName="ItemStatus" />
-          <ScalarProperty Name="DateToRepair" ColumnName="DateToRepair" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

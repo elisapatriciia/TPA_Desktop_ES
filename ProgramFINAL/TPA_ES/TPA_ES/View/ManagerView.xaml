@@ -30,13 +30,13 @@
             <Button Name="btnERReport" Content="Expense and Revenue Report" Margin="5,8" Padding="3"  FontSize="20" 
                     />
             <Button Name="btnFireEmployee" Content="Fire employee" Margin="5,8" Padding="3" FontSize="20" 
-                    />
+                    Click="btnFireEmployee_Click" Background="CadetBlue"/>
             <Button Name="btnResignationEmployee" Content="Resignation of employee" Margin="5,8" Padding="3" FontSize="20" 
                     />
             <Button Name="btnCheckRequestFire" Content="Check Request firing employee" Margin="5,8" Padding="3" FontSize="20" 
-                    />
+                     Background="CadetBlue" Click="btnCheckRequestFire_Click"/>
             <Button Name="btnReportBrokenItem" Content="Report Broken Item" Margin="5,8" Padding="3" FontSize="20" 
-                    Background="Firebrick" Click="btnReportBrokenItem_Click"/>
+                    Background="LightCoral" Click="btnReportBrokenItem_Click"/>
             <Button Name="backBtn" Content="Back To Main Menu" Margin="5,8" Padding="3" FontSize="20" 
                      Background="LightGreen" Click="backBtn_Click_1"/>
         </StackPanel>

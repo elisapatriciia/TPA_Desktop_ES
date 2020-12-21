@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using TPA_ES.View.FinanceViews;
 using TPA_ES.View.ATM_Machine;
 using TPA_ES.View.SecurityMaintenanceViews;
 namespace TPA_ES.View
@@ -77,6 +78,13 @@ namespace TPA_ES.View
         {
             SMMenuView menuView = new SMMenuView();
             menuView.Show();
+            this.Close();
+        }
+
+        private void btnFinance_Click(object sender, RoutedEventArgs e)
+        {
+            FinanceTeamView view = new FinanceTeamView();
+            view.Show();
             this.Close();
         }
 

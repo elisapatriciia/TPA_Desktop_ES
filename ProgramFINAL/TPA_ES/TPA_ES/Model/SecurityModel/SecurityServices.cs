@@ -223,7 +223,7 @@ namespace TPA_ES.Model.SecurityModel
                 if (ObjSchedule == null) throw new ArgumentException("Reported Item Not Found!");
                 if (dateToRepair == null) throw new ArgumentException("Date to Repair must be Filled!");
                 if (dateToRepair <= ObjSchedule.ReportDate) throw new ArgumentException("Repair Date must be more than report date");
-                if (itemStatus == "")
+                if (itemStatus == null)
                     throw new ArgumentException("Status of Item must be filled!");
                 if (!(itemStatus == "Repaired" || itemStatus == "Pending"))
                     throw new ArgumentException("Status of Item must be [Repaired | Pending]!");

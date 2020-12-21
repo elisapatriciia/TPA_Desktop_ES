@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using TPA_ES.View.SecurityMaintenanceViews;
+using TPA_ES.View.ManagerViews;
 namespace TPA_ES.View
 {
     /// <summary>
@@ -36,6 +37,20 @@ namespace TPA_ES.View
             ReportBrokenItemView view = new ReportBrokenItemView();
             view.Show();
 
+        }
+
+        private void btnFireEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            FireEmployeeView fireEmployeeView = new FireEmployeeView();
+            fireEmployeeView.Show();
+            this.Close();
+        }
+
+        private void btnCheckRequestFire_Click(object sender, RoutedEventArgs e)
+        {
+            CheckRequestFiringView cv = new CheckRequestFiringView();
+            cv.Show();
+            this.Close();
         }
     }
 }

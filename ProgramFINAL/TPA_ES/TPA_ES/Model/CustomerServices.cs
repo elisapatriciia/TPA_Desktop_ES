@@ -151,7 +151,7 @@ namespace TPA_ES.Model
         public bool DepositMoney(string accountNumber, int depositMoney)
         {
             bool IsDeposit = false;
-            if (accountNumber == "") throw new ArgumentException("Insert Account Number!"); 
+            if (accountNumber == null) throw new ArgumentException("Insert Account Number!"); 
             try
             {
                 var ObjAccountToFind = ObjContext.Accounts.Find(accountNumber);
@@ -198,7 +198,7 @@ namespace TPA_ES.Model
         public bool WithDrawMoney(string accountNumber, int withdrawMoney)
         {
             bool IsWithdraw = false;
-            if (accountNumber == "") throw new ArgumentException("Insert Account Number!");
+            if (accountNumber == null) throw new ArgumentException("Insert Account Number!");
             try
             {
                 var ObjAccountToFind = ObjContext.Accounts.Find(accountNumber);
@@ -243,14 +243,14 @@ namespace TPA_ES.Model
         public bool TransferMoney(string accountNumber, string accountTo,int transferMoney)
         {
             bool IsTransfer = false;
-            if (accountNumber == "") throw new ArgumentException("Insert Account Number!");
+            if (accountNumber == null) throw new ArgumentException("Insert Account Number!");
             try
             {
                 var ObjAccountFromToFind = ObjContext.Accounts.Find(accountNumber);
                 var ObjAccountTo_ToFind = ObjContext.Accounts.Find(accountTo);
                 if (ObjAccountFromToFind == null)
                     throw new ArgumentException("Account Not Found!");
-                if (accountTo == "") throw new ArgumentException("Insert Account Destination Number!");
+                if (accountTo == null) throw new ArgumentException("Insert Account Destination Number!");
                 if (ObjAccountTo_ToFind == null)
                     throw new ArgumentException("Account Destination Not Found!");
                 else if (transferMoney < 10000)
@@ -294,8 +294,8 @@ namespace TPA_ES.Model
             bool IsPayed = false;
             int paymentT = 0;
 
-            if (accountNumber == "") throw new ArgumentException("Insert Account Number!");
-            if (vaNumber == "") throw new ArgumentException("Insert Virtual Account Number!");
+            if (accountNumber == null) throw new ArgumentException("Insert Account Number!");
+            if (vaNumber == null) throw new ArgumentException("Insert Virtual Account Number!");
             try
             {
                 var ObjAccountFromToFind = ObjContext.Accounts.Find(accountNumber);
@@ -307,7 +307,7 @@ namespace TPA_ES.Model
                     throw new ArgumentException("Payment Type must be filled [Electric Payment | Water Payment | Pulse Payment]");
                 else if (ObjVA_ToFind == null)
                     throw new ArgumentException("Virtual Account Number Not Found!");
-                else if (paymentType == "") throw new ArgumentException("Insert Payment Type!");
+                else if (paymentType == null) throw new ArgumentException("Insert Payment Type!");
                 else if (!(paymentType == "Electric Payment" || paymentType == "Water Payment" || paymentType == "Pulse Payment"))
                     throw new ArgumentException("Payment Type [Electric Payment | Water Payment | Pulse Payment]");
                 else if (paymentMoney <= 0) throw new ArgumentException("Insert Money!");
@@ -358,8 +358,8 @@ namespace TPA_ES.Model
         public bool AccountAuth(string accountNumber, string accountPin)
         {
             bool IsAuth = false;
-            if (accountNumber == "") throw new ArgumentException("Insert Account Number!");
-            if (accountPin == "") throw new ArgumentException("Insert Account Pin!");
+            if (accountNumber == null) throw new ArgumentException("Insert Account Number!");
+            if (accountPin == null) throw new ArgumentException("Insert Account Pin!");
             try
             {
                 var ObjAccountToFind = ObjContext.Accounts.Find(accountNumber);
@@ -471,7 +471,7 @@ namespace TPA_ES.Model
         public bool ATMTransferMoney(string accountTo, int transferMoney)
         {
             bool IsTransfer = false;
-            if (accountTo == "") throw new ArgumentException("Insert Account Destination!");
+            if (accountTo == null) throw new ArgumentException("Insert Account Destination!");
             try
             {
                 var ObjAccountFromToFind = ObjContext.Accounts.Find(AccountDTO.auth);
@@ -521,8 +521,8 @@ namespace TPA_ES.Model
         {
             bool IsPayed = false;
             int paymentT = 0;
-            if (vaNumber == "") throw new ArgumentException("Insert Virtual Account Number!");
-            if (paymentType == "") throw new ArgumentException("Insert Payment Type!");
+            if (vaNumber == null) throw new ArgumentException("Insert Virtual Account Number!");
+            if (paymentType == null) throw new ArgumentException("Insert Payment Type!");
             if (paymentMoney <= 0) throw new ArgumentException("Insert Money Amount!");
             try
             {
@@ -583,7 +583,7 @@ namespace TPA_ES.Model
         public bool ATMTransferVA(string vaNumber, int paymentMoney)
         {
             bool IsTransfer = false;
-            if (vaNumber == "") throw new ArgumentException("Insert Virtual Account Number!");
+            if (vaNumber == null) throw new ArgumentException("Insert Virtual Account Number!");
             if (paymentMoney <= 0) throw new ArgumentException("Insert Money Amount!");
             try
             {
