@@ -1,0 +1,46 @@
+﻿<Window x:Class="TPA_ES.View.SecurityMaintenanceViews.SMMenuView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TPA_ES.View.SecurityMaintenanceViews"
+        mc:Ignorable="d"
+        Title="SMMenuView" Height="450" Width="800">
+    <Grid Margin="15" Background="Indigo">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Security and Maintenance" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Padding="10"
+                   Foreground="LightPink"/>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+            <Button Name="viewScheduleBtn" Content="Schedule for Maintenance Items" 
+                    Margin="201,8,198.2,8" Padding="8" FontSize="20" 
+                     Background="DeepPink" Foreground="LightPink"
+                    FontWeight="DemiBold" Click="viewScheduleBtn_Click"/>
+            <Button Name="handleScheduleBtn" Content="Set Schedule for Maintenance Items" 
+                    Margin="201,8,198.2,8" Padding="8" FontSize="20" 
+                     Background="HotPink" Foreground="Indigo"
+                    FontWeight="DemiBold" Click="handleScheduleBtn_Click"/>
+            <Button Name="backBtn" Content="Back To Main Menu" Margin="201,8,198.2,8" Padding="8" FontSize="20" 
+                     Background="LightSeaGreen" Click="backBtn_Click"/>
+
+        </StackPanel>
+
+
+
+    </Grid>
+</Window>

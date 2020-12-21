@@ -1,0 +1,96 @@
+﻿<Window x:Class="TPA_ES.View.ManageEmployeeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TPA_ES.View"
+        mc:Ignorable="d"
+        Title="ManageEmployeeView" Height="660.1" Width="678">
+    <Grid Margin="15" Background="PaleVioletRed">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="184"/>
+            <ColumnDefinition Width="auto" MinWidth="140"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Button Name="btnBack" Content="Back" Margin="5,10,79,33" Padding="3" 
+                Grid.Column="1" Grid.Row="0"
+                    Background="LightSeaGreen" Click="btnBack_Click" FontWeight="DemiBold"/>
+        <TextBlock Text="Manage Employee" Grid.Row="0" Grid.Column="2" Foreground="MistyRose"
+                   FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Padding="10" Margin="11,0,10.4,0.4" Width="265"/>
+
+        <TextBlock Text="Employee ID" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Margin="5,7.6,4,8.2" Padding="3" Grid.ColumnSpan="2"/>
+        <TextBlock Text="Employee Name" FontWeight="Bold" Grid.Row="2" Grid.Column="0" Margin="5,7.8,4,8" Padding="3" Grid.ColumnSpan="2"/>
+        <TextBlock Text="Employee Status"  FontWeight="Bold" Grid.Row="3" Grid.Column="0" Margin="5,8,4,7.8" Padding="3" Grid.ColumnSpan="2"/>
+        <TextBlock Text="Employee Position" FontWeight="Bold" Grid.Row="4" Grid.Column="0" Margin="5,8.2,4,7.6" Padding="3" Grid.ColumnSpan="2"/>
+        <!--<TextBlock Text="Employee Violation Score" Grid.Row="5" Grid.Column="0" Margin="5,8.4,4,7.4" Padding="3" Grid.ColumnSpan="2"/>
+        <TextBlock Text="Employee Leaving Permit Count" Grid.Row="6" Grid.Column="0" Margin="5,7.6,4,8.2" Padding="3" Grid.ColumnSpan="2"/>
+        <TextBlock Text="Employee Salary" Grid.Row="7" Grid.Column="0" Margin="5,7.8,4,8" Padding="3" Grid.ColumnSpan="2"/>-->
+
+        <TextBox Name="txtID" Grid.Row="1" Grid.Column="2" Margin="5,7.6,4.4,8.2" Padding="3" 
+                 Text="{Binding Path=CurrentEmployee.Id, Mode=TwoWay}"/>
+        <TextBox Name="txtName" Grid.Row="2" Grid.Column="2" Margin="5,7.8,4.4,8" Padding="3"
+                 Text="{Binding Path=CurrentEmployee.EmployeeName, Mode=TwoWay}"/>
+        <ComboBox  Grid.Row="3" Grid.Column="2" Margin="5,8,4.4,7.8" Padding="3" 
+                   ItemsSource="{Binding Path=Status, Mode=TwoWay}" 
+                   SelectedValue="{Binding Path=CurrentEmployee.EmployeeStatus}"/>
+        <TextBox Name="txtPositionID" Grid.Row="4" Grid.Column="3" Margin="5,7.8,4.4,8" Padding="3"
+                 Text="{Binding Path=CurrentEmployee.EmployeePositionID, Mode=TwoWay}"/>
+        <ComboBox  Grid.Row="4" Grid.Column="2" Margin="5,8,4.4,7.8" Padding="3" 
+                   ItemsSource="{Binding Path=Position, Mode=TwoWay}"
+                   SelectedValue="{Binding Path=PositionID, Mode=TwoWay}"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="2" Margin="0,0,0.4,16.6" Grid.RowSpan="2">
+            <Button Name="btnAdd" Content="Add" Margin="5,8" Padding="3"
+                    Command="{Binding Path=SaveCommand}" Background="LightSalmon" FontWeight="Bold"/>
+            <Button Name="btnSearch" Content="Search" Margin="5,8" Padding="3"
+                    Command="{Binding Path=SearchCommand}"/>
+            <Button Name="btnUpdate" Content="Update" Margin="5,8" Padding="3"
+                    Command="{Binding Path=UpdateCommand}" Background="DeepSkyBlue" FontWeight="Bold"/>
+            <Button Name="btnDelete" Content="Delete" Margin="5,8" Padding="3"
+                    Command="{Binding Path=DeleteCommand}" Background="DarkOrange" FontWeight="Bold"/>
+        </StackPanel>
+        <TextBlock Name="errorMessage" Grid.Row="9" Grid.Column="2" Text="{Binding Path=Message}" Grid.ColumnSpan="2" Margin="0,0.2,209,48.4" Grid.RowSpan="2" Foreground="red"/>
+
+        <DataGrid Name="dgCustomer" AutoGenerateColumns="False"
+                  Grid.Row="10" Grid.Column="2" Margin="5,8.4,5.4,8.4" Padding="3"
+                  ItemsSource="{Binding Path=EmployeeList, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Employee Id" Width="auto"
+                    Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn
+                    Header="Employee Name" Width="auto"
+                    Binding="{Binding Path=EmployeeName}"/>
+                <DataGridTextColumn
+                    Header="Employee Status" Width="auto"
+                    Binding="{Binding Path=EmployeeStatus}"/>
+                <DataGridTextColumn
+                    Header="Employee Position ID" Width="auto"
+                    Binding="{Binding Path=EmployeePositionID}"/>
+                <!--<DataGridTextColumn
+                    Header="Employee Violation Score" Width="auto"
+                    Binding="{Binding Path=EmployeeViolationScore}"/>
+                <DataGridTextColumn
+                    Header="Employee Leaving Permit" Width="auto"
+                    Binding="{Binding Path=EmployeeLeavingPermitCOUNT}"/>
+                <DataGridTextColumn
+                    Header="Employee Salary" Width="auto"
+                    Binding="{Binding Path=EmployeeSalay}"/>-->
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

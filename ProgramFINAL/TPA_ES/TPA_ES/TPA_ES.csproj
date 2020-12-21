@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{20E80944-8FD3-42A4-ABC8-B9E5B8F37D27}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TPA_ES</RootNamespace>
+    <AssemblyName>TPA_ES</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Model\Account.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AccountDTO.cs" />
+    <Compile Include="Model\AccountType.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AccountTypeDTO.cs" />
+    <Compile Include="Model\Connection.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Connection.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Connection.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Connection.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Connection.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Customer.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CustomerDTO.cs" />
+    <Compile Include="Model\CustomerServices.cs" />
+    <Compile Include="Model\Employee.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EmployeeDTO.cs" />
+    <Compile Include="Model\EmployeeLeavingPermit.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EmployeeModel\EmployeeLeavingPermitDTO.cs" />
+    <Compile Include="Model\EmployeeModel\EmployeeLeavingPermitServices.cs" />
+    <Compile Include="Model\EmployeeModel\RequestDTO.cs" />
+    <Compile Include="Model\EmployeeModel\RequestTypeDTO.cs" />
+    <Compile Include="Model\EmployeePosition.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EmployeePositionDTO.cs" />
+    <Compile Include="Model\EmployeePositionServices.cs" />
+    <Compile Include="Model\EmployeeServices.cs" />
+    <Compile Include="Model\Item.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ReportItem.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Request.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RequestType.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ScheduleSM.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SecurityModel\ItemModel.cs" />
+    <Compile Include="Model\SecurityModel\ReportItemModel.cs" />
+    <Compile Include="Model\SecurityModel\ScheduleSMDTO.cs" />
+    <Compile Include="Model\SecurityModel\SecurityServices.cs" />
+    <Compile Include="Model\Sibling.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SiblingDTO.cs" />
+    <Compile Include="Model\Transaction.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TransactionModels\TransactionDTO.cs" />
+    <Compile Include="Model\TransactionModels\TransactionTypeDTO.cs" />
+    <Compile Include="Model\TransactionType.cs">
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\CustomerViewModels\ATMViewModel.cs" />
+    <Compile Include="ViewModel\CustomerViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModel\EmployeePositionViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeViewModels\EmployeeLeavingPermitViewModel.cs" />
+    <Compile Include="ViewModel\SecutiryMaintenanceViewModels\SecurityViewModel.cs" />
+    <Compile Include="ViewModel\TellerViewModel.cs" />
+    <Compile Include="ViewModel\TransactionViewModels\TransactionViewModel.cs" />
+    <Compile Include="View\ATM_Machine\ATMView.xaml.cs">
+      <DependentUpon>ATMView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ATM_Machine\CustomerAccountAuthView.xaml.cs">
+      <DependentUpon>CustomerAccountAuthView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ATM_Machine\DepositbyATMView.xaml.cs">
+      <DependentUpon>DepositbyATMView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ATM_Machine\PaymentsbyATMView.xaml.cs">
+      <DependentUpon>PaymentsbyATMView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ATM_Machine\TransferbyATMView.xaml.cs">
+      <DependentUpon>TransferbyATMView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ATM_Machine\TransferVirtualAccountView.xaml.cs">
+      <DependentUpon>TransferVirtualAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ATM_Machine\WithdrawbyATMView.xaml.cs">
+      <DependentUpon>WithdrawbyATMView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomerServiceView.xaml.cs">
+      <DependentUpon>CustomerServiceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DepositMoneyView.xaml.cs">
+      <DependentUpon>DepositMoneyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeLeavingPermitView.xaml.cs">
+      <DependentUpon>EmployeeLeavingPermitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeePositionView.xaml.cs">
+      <DependentUpon>EmployeePositionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HRView\RequestFiringEmployee.xaml.cs">
+      <DependentUpon>RequestFiringEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HRView\RequestSalaryView.xaml.cs">
+      <DependentUpon>RequestSalaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HumanResourceManagementView.xaml.cs">
+      <DependentUpon>HumanResourceManagementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageEmployeeView.xaml.cs">
+      <DependentUpon>ManageEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView.xaml.cs">
+      <DependentUpon>ManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MenuWindow.xaml.cs">
+      <DependentUpon>MenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PaymentView.xaml.cs">
+      <DependentUpon>PaymentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QueuMachineView.xaml.cs">
+      <DependentUpon>QueuMachineView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SecurityMaintenanceViews\ReportBrokenItemView.xaml.cs">
+      <DependentUpon>ReportBrokenItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SecurityMaintenanceViews\SecurityMaintenanceView.xaml.cs">
+      <DependentUpon>SecurityMaintenanceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SecurityMaintenanceViews\SetScheduleView.xaml.cs">
+      <DependentUpon>SetScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SecurityMaintenanceViews\SMMenuView.xaml.cs">
+      <DependentUpon>SMMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TellerView.xaml.cs">
+      <DependentUpon>TellerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TransferMoneyView.xaml.cs">
+      <DependentUpon>TransferMoneyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViolationEmployeeView.xaml.cs">
+      <DependentUpon>ViolationEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WithdrawMoneyView.xaml.cs">
+      <DependentUpon>WithdrawMoneyView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\ATM_Machine\ATMView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ATM_Machine\CustomerAccountAuthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ATM_Machine\DepositbyATMView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ATM_Machine\PaymentsbyATMView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ATM_Machine\TransferbyATMView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ATM_Machine\TransferVirtualAccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ATM_Machine\WithdrawbyATMView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomerServiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DepositMoneyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeLeavingPermitView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeePositionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HRView\RequestFiringEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HRView\RequestSalaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HumanResourceManagementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManageEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PaymentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QueuMachineView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecurityMaintenanceViews\ReportBrokenItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecurityMaintenanceViews\SecurityMaintenanceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecurityMaintenanceViews\SetScheduleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecurityMaintenanceViews\SMMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TellerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TransferMoneyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViolationEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WithdrawMoneyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model\Connection.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Connection.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\Connection.edmx.diagram">
+      <DependentUpon>Connection.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Model\Connection.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Connection.Context.cs</LastGenOutput>
+      <DependentUpon>Connection.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\Connection.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Connection.edmx</DependentUpon>
+      <LastGenOutput>Connection.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

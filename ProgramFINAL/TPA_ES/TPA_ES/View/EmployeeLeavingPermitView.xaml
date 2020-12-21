@@ -1,0 +1,76 @@
+﻿<Window x:Class="TPA_ES.View.EmployeeLeavingPermitView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TPA_ES.View"
+        mc:Ignorable="d"
+        Title="EmployeeLeavingPermitView" Height="429.739" Width="866.113">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto" MinWidth="140"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Button Name="btnBack" Content="Back" Margin="5,10,38.6,33" Padding="3"
+                    Background="LightSeaGreen" Click="btnBack_Click"/>
+        <TextBlock Text="Employee Leaving Permit" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                   FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Padding="10" Margin="49,0,219.8,0" Width="344"/>
+
+        <TextBlock Text="Employee ID" Grid.Row="1" Grid.Column="0" Margin="5,7.6,4.6,8.2" Padding="3"/>
+        <TextBlock Text="Leaving Reasons" Grid.Row="3" Grid.Column="0" Margin="5,8,4.6,7.8" Padding="3"/>
+        <TextBlock Text="Leaving Start Date" Grid.Row="4" Grid.Column="0" Margin="5,8,4.6,7.8" Padding="3"/>
+        <TextBlock Text="Leaving End Date" Grid.Row="5" Grid.Column="0" Margin="5,8,4.6,7.8" Padding="3"/>
+        
+        <TextBox Name="txtID" Grid.Row="1" Grid.Column="1" Margin="5,0,5.2,7.8" Padding="3" 
+                 Text="{Binding Path=CurrentEmployeeLP.EmployeeID, Mode=TwoWay}" Height="25" VerticalAlignment="Bottom"/>
+        <TextBox Name="txtLeavingReasons" Grid.Row="3" Grid.Column="1" Margin="5.4,8,4.6,7.8" Padding="3"
+                 Text="{Binding Path=CurrentEmployeeLP.Reason, Mode=TwoWay}"/>
+        <DatePicker Grid.Row="4" Grid.Column="1" 
+            SelectedDate="{Binding Path=CurrentEmployeeLP.LeavingDateStart, Mode=TwoWay}"/>
+        <DatePicker Grid.Row="5" Grid.Column="1" 
+            SelectedDate="{Binding Path=CurrentEmployeeLP.LeavingDateEnd, Mode=TwoWay}"/>
+        
+
+        <TextBlock Name="errorMessage" Grid.Row="6" Grid.Column="1" Text="{Binding Path=Message}" Foreground="Red"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1">
+            <!--<Button Name="btnSearch" Content="Search" Margin="5,8" Padding="3"
+                    Command="{Binding Path=SearchEmployeeLeavingPermitCommand}"/>-->
+            <Button Name="btnUpdate" Content="Set Leaving Permit" Margin="5,8" Padding="3"
+                    Command="{Binding Path=SaveCommand}"/>
+        </StackPanel>
+
+        <DataGrid Name="dgCustomer" AutoGenerateColumns="False"
+                  Grid.Row="1" Grid.Column="2" Margin="5,8" Padding="3" Grid.RowSpan="7" 
+                  ItemsSource="{Binding Path=EmployeeLPList, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Employee Id" Width="auto"
+                    Binding="{Binding Path=EmployeeID}"/>
+                <DataGridTextColumn
+                    Header="Reasons" Width="auto"
+                    Binding="{Binding Path=Reason}"/>
+                <DataGridTextColumn
+                    Header="Start Date" Width="auto"
+                    Binding="{Binding Path=LeavingDateStart}"/>
+                <DataGridTextColumn
+                    Header="End Date" Width="auto"
+                    Binding="{Binding Path=LeavingDateEnd}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

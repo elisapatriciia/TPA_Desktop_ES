@@ -1,0 +1,56 @@
+﻿<Window x:Class="TPA_ES.View.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TPA_ES.View"
+        mc:Ignorable="d"
+        Title="MenuWindow" Height="701.175" Width="721.237">
+    <Grid Margin="15" Background="AliceBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Button Name="btnClose" Content="X" Margin="5,10,638.8,10" Padding="3" FontSize="20" 
+                   Background="Crimson" Grid.ColumnSpan="2" FontStretch="ExtraExpanded" 
+                Foreground="AntiqueWhite" FontWeight="ExtraBold" Click="btnClose_Click"/>
+        <TextBlock Text="Kong Bu Bank" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Padding="10"/>
+
+        <StackPanel Orientation="Vertical" Grid.Row="9" Grid.Column="1">
+            <Button Name="btnCustomer" Content="Customer" Margin="5,8" Padding="3"  FontSize="20" 
+                    />
+            <Button Name="btnTeller" Content="Teller" Margin="5,8" Padding="3"  FontSize="20" 
+                    Click="btnTeller_Click" Background="Bisque"/>
+            <Button Name="btnCustomerService" Content="Customer Service" Margin="5,8" Padding="3" FontSize="20" 
+                    Click="btnCustomerService_Click"/>
+            <Button Name="btnSMT" Content="Security and Maintanace Team" Margin="5,8" Padding="3" FontSize="20" 
+                    />
+            <Button Name="btnHRM" Content="Human Resource Management" Margin="5,8" Padding="3" FontSize="20" 
+                   Click="btnHRM_Click" Background="Bisque"/>
+            <Button Name="btnFinance" Content="Finance Team" Margin="5,8" Padding="3" FontSize="20" 
+                   />
+            <Button Name="btnManager" Content="Manager" Margin="5,8" Padding="3" FontSize="20" 
+                   Click="btnManager_Click" Background="Plum"/>
+            <Button Name="btnATM" Content="ATM" Margin="5,8" Padding="3" FontSize="20" 
+                   Click="btnATM_Click" Background="RosyBrown"/>
+            <Button Name="btnSM" Content="Security and Maintenance" Margin="5,8" Padding="3" FontSize="20" 
+                   Click="btnSM_Click" Background="Indigo" Foreground="LightPink"/>
+            <Button Name="btnQueue" Content="Queue Machine" Margin="5,8" Padding="3" FontSize="20" 
+                   Click="btnQueue_Click"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

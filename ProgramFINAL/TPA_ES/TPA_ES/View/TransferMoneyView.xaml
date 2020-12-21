@@ -1,0 +1,51 @@
+﻿<Window x:Class="TPA_ES.View.TransferMoneyView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TPA_ES.View"
+        mc:Ignorable="d"
+        Title="TransferMoneyView" Height="374.289" Width="527.014">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto" MinWidth="140"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="83*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Button Name="btnBack" Content="Back" Margin="5,10,38.6,33" Padding="3"
+                    Background="LightSeaGreen" Click="btnBack_Click"/>
+
+        <TextBlock Text="Transfer Money" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"
+                   FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Padding="10" Margin="5.4,0,54.2,0" Width="310"/>
+        <TextBlock Text="Customer Account" Grid.Row="2" Grid.Column="0" Margin="5,7.6,4.6,8.2" Padding="3"/>
+        <TextBlock Text="To Account" Grid.Row="3" Grid.Column="0" Margin="5,8,4.6,7.8" Padding="3"/>
+        <TextBlock Text="Transfer Money Amount" Grid.Row="4" Grid.Column="0" Margin="5,8,4.6,7.8" Padding="3"/>
+        
+        <TextBox Name="txtAccount" Grid.Row="2" Grid.Column="1" Margin="5.4,7.6,4.8,8.2" Padding="3" 
+                 Text="{Binding Path=AccountNumber, Mode=TwoWay}"/>
+        <TextBox Name="txtAccountTo" Grid.Row="3" Grid.Column="1" Margin="5.4,7.6,4.8,8.2" Padding="3" 
+                 Text="{Binding Path=AccountTo, Mode=TwoWay}"/>
+        <TextBox Name="txtTransferMoney" Grid.Row="4" Grid.Column="1" Margin="5.4,8,4.8,7.8" Padding="3"
+                 Text="{Binding Path=TransferMoney, Mode=TwoWay}"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="0.4,0.2,126,16.4" Grid.RowSpan="2">
+            <Button Name="btnTransfer" Content="Transfer" Margin="5,8" Padding="3"
+                    Command="{Binding Path=TransferCommand}"/>
+        </StackPanel>
+        <TextBlock Name="errorMessage" Grid.Row="6" Grid.Column="0" Text="{Binding Path=Message}" 
+                   Grid.ColumnSpan="4" Margin="0.4,0,10.2,0.6" Foreground="Red"/>
+
+
+    </Grid>
+</Window>

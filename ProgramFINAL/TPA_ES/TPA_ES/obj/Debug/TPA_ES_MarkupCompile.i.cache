@@ -1,0 +1,20 @@
+﻿TPA_ES
+
+
+winexe
+C#
+.cs
+C:\Users\elisa\OneDrive - Bina Nusantara University\!BLUEJACK\!!TPA\Desktop\Answer\TPA_ES\TPA_ES\obj\Debug\
+TPA_ES
+none
+false
+DEBUG;TRACE
+C:\Users\elisa\OneDrive - Bina Nusantara University\!BLUEJACK\!!TPA\Desktop\Answer\TPA_ES\TPA_ES\App.xaml
+28-1014662400
+2-1339962809
+78198601353
+181432086324
+MainWindow.xaml;View\ATM_Machine\ATMView.xaml;View\ATM_Machine\CustomerAccountAuthView.xaml;View\ATM_Machine\DepositbyATMView.xaml;View\ATM_Machine\PaymentsbyATMView.xaml;View\ATM_Machine\TransferbyATMView.xaml;View\ATM_Machine\TransferVirtualAccountView.xaml;View\ATM_Machine\WithdrawbyATMView.xaml;View\CustomerServiceView.xaml;View\DepositMoneyView.xaml;View\EmployeeLeavingPermitView.xaml;View\EmployeePositionView.xaml;View\HRView\RequestFiringEmployee.xaml;View\HRView\RequestSalaryView.xaml;View\HumanResourceManagementView.xaml;View\ManageEmployeeView.xaml;View\ManagerView.xaml;View\MenuWindow.xaml;View\PaymentView.xaml;View\QueuMachineView.xaml;View\SecurityMaintenanceViews\ReportBrokenItemView.xaml;View\SecurityMaintenanceViews\SecurityMaintenanceView.xaml;View\SecurityMaintenanceViews\SetScheduleView.xaml;View\SecurityMaintenanceViews\SMMenuView.xaml;View\TellerView.xaml;View\TransferMoneyView.xaml;View\ViolationEmployeeView.xaml;View\WithdrawMoneyView.xaml;
+
+True
+

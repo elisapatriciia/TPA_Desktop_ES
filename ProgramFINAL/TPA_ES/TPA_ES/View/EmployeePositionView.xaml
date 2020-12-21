@@ -1,0 +1,42 @@
+﻿<Window x:Class="TPA_ES.View.EmployeePositionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TPA_ES.View"
+        mc:Ignorable="d"
+        Title="EmployeePositionView" Height="450" Width="800">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="184"/>
+            <ColumnDefinition Width="auto" MinWidth="140"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Available new Employee Position" Grid.Row="0" Grid.Column="1" Foreground="Chocolate"
+                   FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Padding="10" Margin="145,0,158.2,0" Width="460" Grid.ColumnSpan="3"/>
+        <Button Name="btnBack" Content="Back" Margin="5,10,79,33" Padding="3" 
+                Grid.Column="1" Grid.Row="0"
+                    Background="LightSeaGreen" Click="btnBack_Click"/>
+        <DataGrid Name="dgCustomer" AutoGenerateColumns="False" 
+                  Grid.Row="3" Grid.Column="2" Margin="5,8.4,5.4,8.4" Padding="3"
+                  ItemsSource="{Binding Path=EmployeePositionList, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Position ID" Width="auto"
+                    Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn
+                    Header="Position Name" Width="auto"
+                    Binding="{Binding Path=EmployeePositionName}"/>
+                <DataGridTextColumn
+                    Header="Position Slot" Width="auto"
+                    Binding="{Binding Path=EmployeePositionSlot}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KongBuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="KongBuEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="KongBuModel.Account" />
+    <EntitySet Name="AccountTypes" EntityType="KongBuModel.AccountType" />
+    <EntitySet Name="Customers" EntityType="KongBuModel.Customer" />
+    <EntitySet Name="Employees" EntityType="KongBuModel.Employee" />
+    <EntitySet Name="EmployeeLeavingPermits" EntityType="KongBuModel.EmployeeLeavingPermit" />
+    <EntitySet Name="EmployeePositions" EntityType="KongBuModel.EmployeePosition" />
+    <EntitySet Name="Items" EntityType="KongBuModel.Item" />
+    <EntitySet Name="ReportItems" EntityType="KongBuModel.ReportItem" />
+    <EntitySet Name="Siblings" EntityType="KongBuModel.Sibling" />
+    <EntitySet Name="Transactions" EntityType="KongBuModel.Transaction" />
+    <EntitySet Name="TransactionTypes" EntityType="KongBuModel.TransactionType" />
+    <AssociationSet Name="FK__Account__Custome__0A9D95DB" Association="KongBuModel.FK__Account__Custome__0A9D95DB">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Account__TypeId__6FE99F9F" Association="KongBuModel.FK__Account__TypeId__6FE99F9F">
+      <End Role="AccountType" EntitySet="AccountTypes" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Accou__0F624AF8" Association="KongBuModel.FK__Transacti__Accou__0F624AF8">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Siblings__Custom__2C3393D0" Association="KongBuModel.FK__Siblings__Custom__2C3393D0">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Sibling" EntitySet="Siblings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Custo__0D7A0286" Association="KongBuModel.FK__Transacti__Custo__0D7A0286">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__Employ__1CBC4616" Association="KongBuModel.FK__Employee__Employ__1CBC4616">
+      <End Role="EmployeePosition" EntitySet="EmployeePositions" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EmployeeL__Emplo__1BC821DD" Association="KongBuModel.FK__EmployeeL__Emplo__1BC821DD">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmployeeLeavingPermit" EntitySet="EmployeeLeavingPermits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReportIte__Emplo__3B40CD36" Association="KongBuModel.FK__ReportIte__Emplo__3B40CD36">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ReportItem" EntitySet="ReportItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReportIte__ItemC__3C34F16F" Association="KongBuModel.FK__ReportIte__ItemC__3C34F16F">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="ReportItem" EntitySet="ReportItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Trans__0E6E26BF" Association="KongBuModel.FK__Transacti__Trans__0E6E26BF">
+      <End Role="TransactionType" EntitySet="TransactionTypes" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <EntitySet Name="Requests" EntityType="KongBuModel.Request" />
+    <EntitySet Name="RequestTypes" EntityType="KongBuModel.RequestType" />
+    <EntitySet Name="ScheduleSMs" EntityType="KongBuModel.ScheduleSM" />
+    <AssociationSet Name="FK__Request__Employe__65370702" Association="KongBuModel.FK__Request__Employe__65370702">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ScheduleS__Emplo__40058253" Association="KongBuModel.FK__ScheduleS__Emplo__40058253">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ScheduleSM" EntitySet="ScheduleSMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Request__Request__6442E2C9" Association="KongBuModel.FK__Request__Request__6442E2C9">
+      <End Role="RequestType" EntitySet="RequestTypes" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountNumber" />
+    </Key>
+    <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccountPin" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" />
+    <Property Name="Balance" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="KongBuModel.FK__Account__Custome__0A9D95DB" FromRole="Account" ToRole="Customer" />
+    <NavigationProperty Name="AccountType" Relationship="KongBuModel.FK__Account__TypeId__6FE99F9F" FromRole="Account" ToRole="AccountType" />
+    <NavigationProperty Name="Transactions" Relationship="KongBuModel.FK__Transacti__Accou__0F624AF8" FromRole="Account" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="AccountType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="AccountTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Accounts" Relationship="KongBuModel.FK__Account__TypeId__6FE99F9F" FromRole="AccountType" ToRole="Account" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerDoB" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Accounts" Relationship="KongBuModel.FK__Account__Custome__0A9D95DB" FromRole="Customer" ToRole="Account" />
+    <NavigationProperty Name="Siblings" Relationship="KongBuModel.FK__Siblings__Custom__2C3393D0" FromRole="Customer" ToRole="Sibling" />
+    <NavigationProperty Name="Transactions" Relationship="KongBuModel.FK__Transacti__Custo__0D7A0286" FromRole="Customer" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeeStatus" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeePositionID" Type="Int32" />
+    <Property Name="EmployeeViolationScore" Type="Int32" />
+    <Property Name="EmployeeSalay" Type="Int32" />
+    <NavigationProperty Name="EmployeePosition" Relationship="KongBuModel.FK__Employee__Employ__1CBC4616" FromRole="Employee" ToRole="EmployeePosition" />
+    <NavigationProperty Name="EmployeeLeavingPermits" Relationship="KongBuModel.FK__EmployeeL__Emplo__1BC821DD" FromRole="Employee" ToRole="EmployeeLeavingPermit" />
+    <NavigationProperty Name="ReportItems" Relationship="KongBuModel.FK__ReportIte__Emplo__3B40CD36" FromRole="Employee" ToRole="ReportItem" />
+    <NavigationProperty Name="Requests" Relationship="KongBuModel.FK__Request__Employe__65370702" FromRole="Employee" ToRole="Request" />
+    <NavigationProperty Name="ScheduleSMs" Relationship="KongBuModel.FK__ScheduleS__Emplo__40058253" FromRole="Employee" ToRole="ScheduleSM" />
+  </EntityType>
+  <EntityType Name="EmployeeLeavingPermit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="Reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LeavingDateStart" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LeavingDateEnd" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Employee" Relationship="KongBuModel.FK__EmployeeL__Emplo__1BC821DD" FromRole="EmployeeLeavingPermit" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="EmployeePosition">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="EmployeePositionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeePositionSlot" Type="Int32" />
+    <NavigationProperty Name="Employees" Relationship="KongBuModel.FK__Employee__Employ__1CBC4616" FromRole="EmployeePosition" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ReportItems" Relationship="KongBuModel.FK__ReportIte__ItemC__3C34F16F" FromRole="Item" ToRole="ReportItem" />
+  </EntityType>
+  <EntityType Name="ReportItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="EmployeePositionID" Type="Int32" />
+    <Property Name="ItemCode" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ReportDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Employee" Relationship="KongBuModel.FK__ReportIte__Emplo__3B40CD36" FromRole="ReportItem" ToRole="Employee" />
+    <NavigationProperty Name="Item" Relationship="KongBuModel.FK__ReportIte__ItemC__3C34F16F" FromRole="ReportItem" ToRole="Item" />
+    <Property Name="ReportStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RepairDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Sibling">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="SiblingsName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Customer" Relationship="KongBuModel.FK__Siblings__Custom__2C3393D0" FromRole="Sibling" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="AccountID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccountTo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionTypeID" Type="Int32" Nullable="false" />
+    <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Mutasi" Type="Int32" />
+    <NavigationProperty Name="Account" Relationship="KongBuModel.FK__Transacti__Accou__0F624AF8" FromRole="Transaction" ToRole="Account" />
+    <NavigationProperty Name="Customer" Relationship="KongBuModel.FK__Transacti__Custo__0D7A0286" FromRole="Transaction" ToRole="Customer" />
+    <NavigationProperty Name="TransactionType" Relationship="KongBuModel.FK__Transacti__Trans__0E6E26BF" FromRole="Transaction" ToRole="TransactionType" />
+  </EntityType>
+  <EntityType Name="TransactionType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TransactionTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Transactions" Relationship="KongBuModel.FK__Transacti__Trans__0E6E26BF" FromRole="TransactionType" ToRole="Transaction" />
+  </EntityType>
+  <Association Name="FK__Account__Custome__0A9D95DB">
+    <End Type="KongBuModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="KongBuModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Account__TypeId__6FE99F9F">
+    <End Type="KongBuModel.AccountType" Role="AccountType" Multiplicity="1" />
+    <End Type="KongBuModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Accou__0F624AF8">
+    <End Type="KongBuModel.Account" Role="Account" Multiplicity="1" />
+    <End Type="KongBuModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountNumber" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Siblings__Custom__2C3393D0">
+    <End Type="KongBuModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="KongBuModel.Sibling" Role="Sibling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sibling">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Custo__0D7A0286">
+    <End Type="KongBuModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="KongBuModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__Employ__1CBC4616">
+    <End Type="KongBuModel.EmployeePosition" Role="EmployeePosition" Multiplicity="0..1" />
+    <End Type="KongBuModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeePosition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="EmployeePositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EmployeeL__Emplo__1BC821DD">
+    <End Type="KongBuModel.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="KongBuModel.EmployeeLeavingPermit" Role="EmployeeLeavingPermit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeLeavingPermit">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReportIte__Emplo__3B40CD36">
+    <End Type="KongBuModel.Employee" Role="Employee" Multiplicity="0..1" />
+    <End Type="KongBuModel.ReportItem" Role="ReportItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportItem">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReportIte__ItemC__3C34F16F">
+    <End Type="KongBuModel.Item" Role="Item" Multiplicity="0..1" />
+    <End Type="KongBuModel.ReportItem" Role="ReportItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportItem">
+        <PropertyRef Name="ItemCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Trans__0E6E26BF">
+    <End Type="KongBuModel.TransactionType" Role="TransactionType" Multiplicity="1" />
+    <End Type="KongBuModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="TransactionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RequestTypeID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="FireDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SalaryRequest" Type="Int32" />
+    <NavigationProperty Name="Employee" Relationship="KongBuModel.FK__Request__Employe__65370702" FromRole="Request" ToRole="Employee" />
+    <NavigationProperty Name="RequestType" Relationship="KongBuModel.FK__Request__Request__6442E2C9" FromRole="Request" ToRole="RequestType" />
+  </EntityType>
+  <EntityType Name="RequestType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RequestTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RequestDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Requests" Relationship="KongBuModel.FK__Request__Request__6442E2C9" FromRole="RequestType" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="ScheduleSM">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReportID" Type="Int32" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="DateToRepair" Type="DateTime" Precision="0" />
+    <Property Name="ItemStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee" Relationship="KongBuModel.FK__ScheduleS__Emplo__40058253" FromRole="ScheduleSM" ToRole="Employee" />
+  </EntityType>
+  <Association Name="FK__Request__Employe__65370702">
+    <End Type="KongBuModel.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="KongBuModel.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ScheduleS__Emplo__40058253">
+    <End Type="KongBuModel.Employee" Role="Employee" Multiplicity="0..1" />
+    <End Type="KongBuModel.ScheduleSM" Role="ScheduleSM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScheduleSM">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Request__Request__6442E2C9">
+    <End Type="KongBuModel.RequestType" Role="RequestType" Multiplicity="1" />
+    <End Type="KongBuModel.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RequestType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="RequestTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

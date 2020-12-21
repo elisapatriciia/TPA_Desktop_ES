@@ -1,0 +1,100 @@
+﻿<Window x:Class="TPA_ES.View.SecurityMaintenanceViews.SetScheduleView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TPA_ES.View.SecurityMaintenanceViews"
+        mc:Ignorable="d"
+        Title="SetScheduleView" Height="681.931" Width="824.526">
+    <Grid Margin="15" Background="Indigo">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Set Schedule for Maintenance" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Padding="10"
+                   Foreground="LightPink"/>
+
+        <TextBlock Text="Report ID" Grid.Row="1" Grid.Column="0" Margin="5,7.6,4.6,8.2" Padding="3" 
+                   FontSize="15" Foreground="Pink" FontWeight="Bold"/>
+        <!--<TextBlock Text="Employee ID" Grid.Row="2" Grid.Column="0" Margin="5,8,4.6,7.8" Padding="3" FontSize="15"
+                   Foreground="Pink" FontWeight="Bold"/>-->
+        <TextBlock Text="Date to Repair" Grid.Row="3" Grid.Column="0" Margin="5,8,4.6,7.8" Padding="3" FontSize="15"
+                   Foreground="Pink" FontWeight="Bold"/>
+        <TextBlock Text="Item Status" Grid.Row="4" Grid.Column="0" Margin="5,8,4.6,7.8" Padding="3" FontSize="15"
+                   Foreground="Pink" FontWeight="Bold"/>
+
+        <TextBox Name="txtAccount" Grid.Row="1" Grid.Column="1" Margin="5.4,7.6,4.8,8.2" Padding="3" 
+                 Text="{Binding Path=ReportID, Mode=TwoWay}" FontSize="15" Background="Indigo" 
+                 Foreground="White" FontWeight="DemiBold" BorderThickness="1" BorderBrush="Pink"/>
+        <!--<TextBox Name="txtName" Grid.Row="2" Grid.Column="1" Margin="5.4,7.8,4.8,8" Padding="3"
+                 Text="{Binding Path=EmployeeID, Mode=TwoWay}" FontSize="15"
+                 Background="Indigo" BorderThickness="1" BorderBrush="Pink"
+                 Foreground="White" FontWeight="DemiBold"/>-->
+        <!--nanti ubah jadi Date Picker-->
+        <DatePicker Grid.Row="3" Grid.Column="1" 
+            SelectedDate="{Binding Path=DateToRepair, 
+            Mode=TwoWay}" FontSize="15"
+                 BorderThickness="1" BorderBrush="Pink"
+                 Foreground="Indigo" FontWeight="DemiBold"/>
+        <!--<TextBox Name="txtDesc" Grid.Row="7" Grid.Column="1" Margin="5.4,7.8,4.8,8" Padding="3"
+                 Text="{Binding Path=DateToRepair, Mode=TwoWay}" FontSize="15"
+                 Background="Indigo" BorderThickness="1" BorderBrush="Pink"
+                 Foreground="White" FontWeight="DemiBold"/>-->
+        
+        <!--jadiin dropbox-->
+        <TextBox Name="txtItemStatus" Grid.Row="4" Grid.Column="1" Margin="5.4,7.8,4.8,8" Padding="3"
+                 Text="{Binding Path=ItemStatus, Mode=TwoWay}" FontSize="15"
+                 Background="Indigo" BorderThickness="1" BorderBrush="Pink"
+                 Foreground="White" FontWeight="DemiBold"/>
+
+
+        <TextBlock Name="errorMessage" Grid.Row="5" Grid.Column="1" 
+                   Text="{Binding Path=Message}" FontSize="15" Grid.ColumnSpan="3" Margin="0.4,0,10.2,0.6" Foreground="LightPink"/>
+
+
+        <DataGrid Name="dgItem" AutoGenerateColumns="False" Foreground="Indigo"
+                  Grid.Row="7" Grid.Column="1" Margin="10.2,10,10,39.4" Padding="3"
+                  ItemsSource="{Binding Path=ReportList, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Report Id" Width="auto"
+                    Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn
+                    Header="Item Code" Width="auto"
+                    Binding="{Binding Path=ItemCode}"/>
+                <DataGridTextColumn
+                    Header="Description" Width="auto"
+                    Binding="{Binding Path=Description}"/>
+                <DataGridTextColumn
+                    Header="Report Date" Width="auto"
+                    Binding="{Binding Path=ReportDate}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left">
+            <Button Name="reportBtn" Content="Set" Margin="5,8,5,8.2" Padding="3" FontSize="18" 
+                     Background="DeepPink" Width="74" Foreground="LightPink"  
+                    FontWeight="DemiBold" Command="{Binding Path=SetScheduleCommand}"/>
+            <Button Name="backBtn" Content="Back" Grid.Column="1" Grid.Row="0"
+                Margin="5,8,5,8.2" Padding="8" FontSize="15" 
+                     Background="LightSeaGreen" Click="backBtn_Click"/>
+
+        </StackPanel>
+            
+    
+
+
+    </Grid>
+</Window>

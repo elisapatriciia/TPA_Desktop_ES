@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KongBuModelStoreContainer" CdmEntityContainer="KongBuEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="KongBuModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="AccountPin" ColumnName="AccountPin" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountTypes">
+      <EntityTypeMapping TypeName="KongBuModel.AccountType">
+        <MappingFragment StoreEntitySet="AccountType">
+          <ScalarProperty Name="AccountTypeName" ColumnName="AccountTypeName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="KongBuModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="CustomerDoB" ColumnName="CustomerDoB" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="KongBuModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="EmployeeSalay" ColumnName="EmployeeSalay" />
+          <ScalarProperty Name="EmployeeViolationScore" ColumnName="EmployeeViolationScore" />
+          <ScalarProperty Name="EmployeePositionID" ColumnName="EmployeePositionID" />
+          <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeLeavingPermits">
+      <EntityTypeMapping TypeName="KongBuModel.EmployeeLeavingPermit">
+        <MappingFragment StoreEntitySet="EmployeeLeavingPermit">
+          <ScalarProperty Name="LeavingDateEnd" ColumnName="LeavingDateEnd" />
+          <ScalarProperty Name="LeavingDateStart" ColumnName="LeavingDateStart" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeePositions">
+      <EntityTypeMapping TypeName="KongBuModel.EmployeePosition">
+        <MappingFragment StoreEntitySet="EmployeePosition">
+          <ScalarProperty Name="EmployeePositionSlot" ColumnName="EmployeePositionSlot" />
+          <ScalarProperty Name="EmployeePositionName" ColumnName="EmployeePositionName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="KongBuModel.Item">
+        <MappingFragment StoreEntitySet="Item">
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportItems">
+      <EntityTypeMapping TypeName="KongBuModel.ReportItem">
+        <MappingFragment StoreEntitySet="ReportItem">
+          <ScalarProperty Name="RepairDate" ColumnName="RepairDate" />
+          <ScalarProperty Name="ReportStatus" ColumnName="ReportStatus" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="EmployeePositionID" ColumnName="EmployeePositionID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Siblings">
+      <EntityTypeMapping TypeName="KongBuModel.Sibling">
+        <MappingFragment StoreEntitySet="Siblings">
+          <ScalarProperty Name="SiblingsName" ColumnName="SiblingsName" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="KongBuModel.Transaction">
+        <MappingFragment StoreEntitySet="Transaction">
+          <ScalarProperty Name="Mutasi" ColumnName="Mutasi" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
+          <ScalarProperty Name="AccountTo" ColumnName="AccountTo" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionTypes">
+      <EntityTypeMapping TypeName="KongBuModel.TransactionType">
+        <MappingFragment StoreEntitySet="TransactionType">
+          <ScalarProperty Name="TransactionDescription" ColumnName="TransactionDescription" />
+          <ScalarProperty Name="TransactionTypeName" ColumnName="TransactionTypeName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Requests">
+      <EntityTypeMapping TypeName="KongBuModel.Request">
+        <MappingFragment StoreEntitySet="Request">
+          <ScalarProperty Name="SalaryRequest" ColumnName="SalaryRequest" />
+          <ScalarProperty Name="FireDescription" ColumnName="FireDescription" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RequestTypes">
+      <EntityTypeMapping TypeName="KongBuModel.RequestType">
+        <MappingFragment StoreEntitySet="RequestType">
+          <ScalarProperty Name="RequestDescription" ColumnName="RequestDescription" />
+          <ScalarProperty Name="RequestTypeName" ColumnName="RequestTypeName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScheduleSMs">
+      <EntityTypeMapping TypeName="KongBuModel.ScheduleSM">
+        <MappingFragment StoreEntitySet="ScheduleSM">
+          <ScalarProperty Name="ItemStatus" ColumnName="ItemStatus" />
+          <ScalarProperty Name="DateToRepair" ColumnName="DateToRepair" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

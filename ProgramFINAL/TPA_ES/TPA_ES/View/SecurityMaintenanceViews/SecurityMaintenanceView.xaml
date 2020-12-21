@@ -1,0 +1,79 @@
+﻿<Window x:Class="TPA_ES.View.SecurityMaintenanceViews.SecurityMaintenanceView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TPA_ES.View.SecurityMaintenanceViews"
+        mc:Ignorable="d"
+        Title="SecurityMaintenanceView" Height="519.6" Width="874.4">
+    <Grid Margin="15" Background="Indigo">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Schedule for Maintenance" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Padding="10"
+                   Foreground="LightPink"/>
+        <DataGrid Name="dgItem" AutoGenerateColumns="False" Foreground="Indigo"
+                  Grid.Row="2" Grid.Column="1" Margin="25,10.4,10.6,39" Padding="3"
+                  ItemsSource="{Binding Path=ReportList, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Report Id" Width="auto"
+                    Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn
+                    Header="Item Code" Width="auto"
+                    Binding="{Binding Path=ItemCode}"/>
+                <DataGridTextColumn
+                    Header="Description" Width="auto"
+                    Binding="{Binding Path=Description}"/>
+                <DataGridTextColumn
+                    Header="Report Date" Width="auto"
+                    Binding="{Binding Path=ReportDate}"/>
+                <DataGridTextColumn
+                    Header="Repair Date" Width="auto"
+                    Binding="{Binding Path=RepairDate}"/>
+                <DataGridTextColumn
+                    Header="Repair Status" Width="auto"
+                    Binding="{Binding Path=ReportStatus}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--<DataGrid Name="dgItem" AutoGenerateColumns="False" Foreground="Indigo"
+                  Grid.Row="2" Grid.Column="1" Margin="138,9.6,139.2,39.8" Padding="3"
+                  ItemsSource="{Binding Path=ScheduleList, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Header="Schedule Id" Width="auto"
+                    Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn
+                    Header="Report Id" Width="auto"
+                    Binding="{Binding Path=ReportID}"/>
+                <DataGridTextColumn
+                    Header="Employee ID" Width="auto"
+                    Binding="{Binding Path=EmployeeID}"/>
+                <DataGridTextColumn
+                    Header="Date to Repair" Width="auto"
+                    Binding="{Binding Path=DateToRepair}"/>
+                <DataGridTextColumn
+                    Header="Item Status" Width="auto"
+                    Binding="{Binding Path=ItemStatus}"/>
+            </DataGrid.Columns>
+        </DataGrid>-->
+
+        <Button Name="backBtn" Content="Back" Grid.Column="1" Grid.Row="0"
+                Margin="25,45,733.6,9.8" Padding="8" FontSize="15" 
+                     Background="LightSeaGreen" Click="backBtn_Click"/>
+    </Grid>
+</Window>

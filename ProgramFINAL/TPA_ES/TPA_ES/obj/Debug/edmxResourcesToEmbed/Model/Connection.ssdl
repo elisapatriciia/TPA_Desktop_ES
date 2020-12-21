@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KongBuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountNumber" />
+    </Key>
+    <Property Name="AccountNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AccountPin" Type="varchar" MaxLength="6" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="CustomerId" Type="int" />
+    <Property Name="Balance" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="AccountTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="CustomerName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerDoB" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="EmployeeName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmployeeStatus" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="EmployeePositionID" Type="int" />
+    <Property Name="EmployeeViolationScore" Type="int" />
+    <Property Name="EmployeeSalay" Type="int" />
+  </EntityType>
+  <EntityType Name="EmployeeLeavingPermit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="Reason" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LeavingDateStart" Type="date" Nullable="false" />
+    <Property Name="LeavingDateEnd" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeePosition">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="EmployeePositionName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmployeePositionSlot" Type="int" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="ItemName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ReportItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" />
+    <Property Name="EmployeePositionID" Type="int" />
+    <Property Name="ItemCode" Type="int" />
+    <Property Name="Description" Type="varchar" MaxLength="100" />
+    <Property Name="ReportDate" Type="date" />
+    <Property Name="RepairDate" Type="date" />
+    <Property Name="ReportStatus" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequestTypeID" Type="int" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="FireDescription" Type="varchar" MaxLength="100" />
+    <Property Name="SalaryRequest" Type="int" />
+  </EntityType>
+  <EntityType Name="RequestType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="RequestTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RequestDescription" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ScheduleSM">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportID" Type="int" />
+    <Property Name="EmployeeID" Type="int" />
+    <Property Name="DateToRepair" Type="date" />
+    <Property Name="ItemStatus" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Siblings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="SiblingsName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="AccountID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AccountTo" Type="varchar" MaxLength="50" />
+    <Property Name="TransactionTypeID" Type="int" Nullable="false" />
+    <Property Name="TransactionDate" Type="date" Nullable="false" />
+    <Property Name="Mutasi" Type="int" />
+  </EntityType>
+  <EntityType Name="TransactionType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="TransactionTypeName" Type="varchar" MaxLength="50" />
+    <Property Name="TransactionDescription" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Account__Custome__0A9D95DB">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Account__TypeId__6FE99F9F">
+    <End Role="AccountType" Type="Self.AccountType" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__Employ__1CBC4616">
+    <End Role="EmployeePosition" Type="Self.EmployeePosition" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeePosition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="EmployeePositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EmployeeL__Emplo__1BC821DD">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="EmployeeLeavingPermit" Type="Self.EmployeeLeavingPermit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeLeavingPermit">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReportIte__Emplo__4F47C5E3">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="ReportItem" Type="Self.ReportItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportItem">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReportIte__ItemC__503BEA1C">
+    <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+    <End Role="ReportItem" Type="Self.ReportItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportItem">
+        <PropertyRef Name="ItemCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Request__Employe__65370702">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Request__Request__6442E2C9">
+    <End Role="RequestType" Type="Self.RequestType" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RequestType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="RequestTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ScheduleS__Emplo__40058253">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="ScheduleSM" Type="Self.ScheduleSM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScheduleSM">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Siblings__Custom__2C3393D0">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Siblings" Type="Self.Siblings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Siblings">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Accou__0F624AF8">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountNumber" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Custo__0D7A0286">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Trans__0E6E26BF">
+    <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="TransactionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KongBuModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountType" EntityType="Self.AccountType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeLeavingPermit" EntityType="Self.EmployeeLeavingPermit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeePosition" EntityType="Self.EmployeePosition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReportItem" EntityType="Self.ReportItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestType" EntityType="Self.RequestType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ScheduleSM" EntityType="Self.ScheduleSM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Siblings" EntityType="Self.Siblings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Account__Custome__0A9D95DB" Association="Self.FK__Account__Custome__0A9D95DB">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Account__TypeId__6FE99F9F" Association="Self.FK__Account__TypeId__6FE99F9F">
+      <End Role="AccountType" EntitySet="AccountType" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__Employ__1CBC4616" Association="Self.FK__Employee__Employ__1CBC4616">
+      <End Role="EmployeePosition" EntitySet="EmployeePosition" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EmployeeL__Emplo__1BC821DD" Association="Self.FK__EmployeeL__Emplo__1BC821DD">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="EmployeeLeavingPermit" EntitySet="EmployeeLeavingPermit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReportIte__Emplo__4F47C5E3" Association="Self.FK__ReportIte__Emplo__4F47C5E3">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="ReportItem" EntitySet="ReportItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReportIte__ItemC__503BEA1C" Association="Self.FK__ReportIte__ItemC__503BEA1C">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="ReportItem" EntitySet="ReportItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Request__Employe__65370702" Association="Self.FK__Request__Employe__65370702">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Request__Request__6442E2C9" Association="Self.FK__Request__Request__6442E2C9">
+      <End Role="RequestType" EntitySet="RequestType" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ScheduleS__Emplo__40058253" Association="Self.FK__ScheduleS__Emplo__40058253">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="ScheduleSM" EntitySet="ScheduleSM" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Siblings__Custom__2C3393D0" Association="Self.FK__Siblings__Custom__2C3393D0">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Siblings" EntitySet="Siblings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Accou__0F624AF8" Association="Self.FK__Transacti__Accou__0F624AF8">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Transaction" EntitySet="Transaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Custo__0D7A0286" Association="Self.FK__Transacti__Custo__0D7A0286">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Transaction" EntitySet="Transaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Trans__0E6E26BF" Association="Self.FK__Transacti__Trans__0E6E26BF">
+      <End Role="TransactionType" EntitySet="TransactionType" />
+      <End Role="Transaction" EntitySet="Transaction" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
